@@ -1,5 +1,5 @@
 <idea-plugin>
-  <id>com.your.company.unique.plugin.id</id>
+  <id>com.mzl0101.packageUpgradeBuild</id>
   <name>packageUpgradeBuild</name>
   <version>1.0</version>
   <vendor email="1059115590@qq.com" url="http://www.mzl0101.com">mzl</vendor>
