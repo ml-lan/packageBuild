@@ -1,0 +1,36 @@
+<idea-plugin>
+  <id>com.your.company.unique.plugin.id</id>
+  <name>packageUpgradeBuild</name>
+  <version>1.0</version>
+  <vendor email="1059115590@qq.com" url="http://www.mzl0101.com">mzl</vendor>
+
+  <description><![CDATA[一个打包升级工具，主要是帮助项目进行升级时，打包class文件、SQL脚本以及其他代码。]]></description>
+
+  <change-notes><![CDATA[ 打包升级工具]]>
+  </change-notes>
+
+  <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+    <!-- applicationService 这个是插件配置文件的持久化 -->
+    <applicationService serviceImplementation="com.mzl0101.config.GlobalConfSetting"/>
+    <applicationService serviceImplementation="com.mzl0101.config.GlobalProjectConfSetting"/>
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+    <action id="test_action_id" class="com.mzl0101.action.TestAction" text="通知" description="测试通知的功能">
+      <add-to-group group-id="ToolsMenu" anchor="first"/>
+    </action>
+    <action id="basePackAction" class="com.mzl0101.action.BasePackAction" text="打包升级工具" description="打包升级工具">
+      <add-to-group group-id="BuildMenu" anchor="last"/>
+    </action>
+  </actions>
+
+</idea-plugin>

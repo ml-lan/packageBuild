@@ -1,2 +1,2 @@
-# packageUpgradeBuild
-一个ideal 插件，打包升级工具，提高工作效率。
+# 打包升级工具
+一个Intellij IDEA 插件，为了项目打包，提高工作效率。
