@@ -25,9 +25,6 @@
 
   <actions>
     <!-- Add your actions here -->
-    <action id="test_action_id" class="com.mzl0101.action.TestAction" text="通知" description="测试通知的功能">
-      <add-to-group group-id="ToolsMenu" anchor="first"/>
-    </action>
     <action id="basePackAction" class="com.mzl0101.action.BasePackAction" text="打包升级工具" description="打包升级工具">
       <add-to-group group-id="BuildMenu" anchor="last"/>
     </action>
