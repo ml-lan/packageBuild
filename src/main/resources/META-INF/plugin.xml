@@ -2,22 +2,23 @@
     <id>com.mzl0101.packageBuild</id>
     <name>packageBuild</name>
     <vendor email="1059115590@qq.com" url="http://www.mzl0101.com">mzl</vendor>
-
-    <description><![CDATA[一个打包升级工具，主要是帮助项目进行升级时，打包class文件、SQL脚本以及其他代码。 ]]></description>
-
+    <!--该插件主要解决的问题是针对传统JAVA WEB项目进行部署时，增量升级代码做的一个打包工具。支持打包class文件以及静态文件，包括JSP、JS、SQL脚本。-->
+    <description><![CDATA[The main problem that the plug-in solves is a packaging tool for incremental upgrade code when deploying traditional JAVA WEB projects. Support packaging class files and static files, including JSP, JS, SQL scripts.]]></description>
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <!-- applicationService 这个是插件配置文件的持久化 -->
+        <applicationService serviceImplementation="com.mzl0101.config.GlobalConfSetting"/>
+        <applicationService serviceImplementation="com.mzl0101.config.GlobalProjectConfSetting"/>
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
-        <action id="Hello.HelloAction" class="com.mzl0101.action.HelloAction" text="HelloAction"
-                description="HelloAction">
-            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        <action id="basePackAction" class="com.mzl0101.action.BasePackAction" text="packageBuild" description="packageBuild">
+            <add-to-group group-id="BuildMenu" anchor="last"/>
         </action>
     </actions>
 </idea-plugin>
