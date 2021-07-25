@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/packageBuild.iml" filepath="$PROJECT_DIR$/.idea/modules/packageBuild.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/base/packageBuild.base.main.iml" filepath="$PROJECT_DIR$/.idea/modules/base/packageBuild.base.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/base/packageBuild.base.test.iml" filepath="$PROJECT_DIR$/.idea/modules/base/packageBuild.base.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/packageBuild.main.iml" filepath="$PROJECT_DIR$/.idea/modules/packageBuild.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/packageBuild.test.iml" filepath="$PROJECT_DIR$/.idea/modules/packageBuild.test.iml" />
+    </modules>
+  </component>
+</project>

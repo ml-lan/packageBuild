@@ -1,0 +1,23 @@
+<idea-plugin>
+    <id>com.mzl0101.packageBuild</id>
+    <name>packageBuild</name>
+    <vendor email="1059115590@qq.com" url="http://www.mzl0101.com">mzl</vendor>
+
+    <description><![CDATA[一个打包升级工具，主要是帮助项目进行升级时，打包class文件、SQL脚本以及其他代码。 ]]></description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="Hello.HelloAction" class="com.mzl0101.action.HelloAction" text="HelloAction"
+                description="HelloAction">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+    </actions>
+</idea-plugin>
