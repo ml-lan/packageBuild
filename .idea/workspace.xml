@@ -5,21 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95f6d32e-12b7-4524-8971-ac533c973df5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packageUpgradeBuild.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packageUpgradeBuild.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packageUpgradeBuild.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/META-INF/plugin.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mzl0101/action/BasePackAction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mzl0101/base/Pack.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mzl0101/config/GlobalConfSetting.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mzl0101/config/GlobalProjectConfSetting.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mzl0101/dialog/BasePackDialog.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mzl0101/dialog/BasePackDialog.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mzl0101/model/PathConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mzl0101/util/FileUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,7 +251,7 @@
       <updated>1627092745748</updated>
       <workItem from="1627092748518" duration="2687000" />
       <workItem from="1627178996980" duration="12000" />
-      <workItem from="1627181312023" duration="833000" />
+      <workItem from="1627181312023" duration="1168000" />
     </task>
     <servers />
   </component>
