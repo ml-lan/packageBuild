@@ -3,10 +3,10 @@
   <name>packageUpgradeBuild</name>
   <version>1.0</version>
   <vendor email="1059115590@qq.com" url="http://www.mzl0101.com">mzl</vendor>
-
-  <description><![CDATA[一个打包升级工具，主要是帮助项目进行升级时，打包class文件、SQL脚本以及其他代码。]]></description>
-
-  <change-notes><![CDATA[ 打包升级工具]]>
+  <!--该插件主要解决的问题是针对传统JAVA WEB项目进行部署时，增量升级代码做的一个打包工具。支持打包class文件以及静态文件，包括JSP、JS、SQL脚本。-->
+  <description><![CDATA[ The main problem that the plug-in solves is a packaging tool for incremental upgrade code when deploying traditional JAVA WEB projects. Support packaging class files and static files, including JSP, JS, SQL scripts. ]]></description>
+  <!--初始化插件，目前支持打包最近一次提交的文件列表。-->
+  <change-notes><![CDATA[ Initialize the plug-in. Currently, it supports packaging the file list submitted last time. ]]>
   </change-notes>
 
   <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
@@ -25,7 +25,7 @@
 
   <actions>
     <!-- Add your actions here -->
-    <action id="basePackAction" class="com.mzl0101.action.BasePackAction" text="打包升级工具" description="打包升级工具">
+    <action id="basePackAction" class="com.mzl0101.action.BasePackAction" text="packageBuild" description="packageBuild">
       <add-to-group group-id="BuildMenu" anchor="last"/>
     </action>
   </actions>
