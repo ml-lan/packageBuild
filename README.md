@@ -1,4 +1,4 @@
-# 打包升级工具
-一个Intellij IDEA 插件，为了项目打包，提高工作效率。
+# 打包工具
+一个Intellij IDEA 插件，基于DevKit。 主要为了提高工作效率。
 # 插件截图
-![插件](./packageUpgradeBuild.png)
+![插件](packageBuild.png)
