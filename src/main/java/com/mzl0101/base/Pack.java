@@ -23,6 +23,7 @@ public class Pack {
     public static String PROJECT_HOME_PATH; //项目路径
     public static String OUTPUT_HOME_PATH; //输出路径
     public static String CUSTOM_REPLACE_TEXT; //特殊字符处理
+    public static List<String> FILES_LIST; //文件列表
     /**
      * 打包方法
      */
@@ -33,6 +34,7 @@ public class Pack {
         PROJECT_HOME_PATH = pathConfig.getProjectHomePath();
         OUTPUT_HOME_PATH = pathConfig.getOutputHomePath();
         CUSTOM_REPLACE_TEXT = pathConfig.getCustomReplaceText();
+        FILES_LIST = pathConfig.getFilesList();
         String resultStr = "";
         try {
             //删除之前打包的打包目录
@@ -41,28 +43,9 @@ public class Pack {
             if (outputDir.exists()) {
                 FileUtil.deleteDir(outputDir);
             }
-            //待打包文件列表
-            List<String> gitDiffFileList = new ArrayList<>();
-            String osName = System.getProperty("os.name").toLowerCase();
-            java.lang.Process process;
-            if (osName.contains("win")) {
-                String drives = PROJECT_HOME_PATH.substring(0, 2);
-                //git diff 获取文件列表
-                process = Runtime.getRuntime().exec("cmd /c " + drives + " && cd " + PROJECT_HOME_PATH + " && git diff --name-only HEAD~ HEAD");
-            } else {
-                process = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "cd " + PROJECT_HOME_PATH + " && git diff --name-only HEAD~ HEAD"});
-            }
-            InputStreamReader reader = new InputStreamReader(process.getInputStream(), "gbk");
-            BufferedReader br = new BufferedReader(reader);
-            String line = "";
-            line = br.readLine();
-            while (line != null) {
-                gitDiffFileList.add(line);
-                line = br.readLine();
-            }
             String fileList = "";
             int count = 0;
-            for(String gitDiffFile: gitDiffFileList){
+            for(String gitDiffFile: FILES_LIST){
                 List<Map<String,String>> filePathList = getClassFilePath(getFilePath(gitDiffFile));
                 for(Map<String,String> filePaths:filePathList){
                     String realFilePath = filePaths.get("realFilePath");
@@ -119,7 +102,6 @@ public class Pack {
                     return false;
                 }
             };
-
             File copyFile = new File(copyFilePath);
             String copyFilePathNew = copyFile.getParentFile().getAbsolutePath();
             File[] files = parentDir.listFiles(fileNameFilter);

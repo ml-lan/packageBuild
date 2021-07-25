@@ -1,6 +1,6 @@
 <idea-plugin>
     <id>com.mzl0101.packageBuild</id>
-    <name>packageBuild</name>
+    <name>PackageBuild</name>
     <vendor email="1059115590@qq.com" url="http://www.mzl0101.com">mzl</vendor>
     <!--该插件主要解决的问题是针对传统JAVA WEB项目进行部署时，增量升级代码做的一个打包工具。支持打包class文件以及静态文件，包括JSP、JS、SQL脚本。-->
     <description><![CDATA[The main problem that the plug-in solves is a packaging tool for incremental upgrade code when deploying traditional JAVA WEB projects. Support packaging class files and static files, including JSP, JS, SQL scripts.]]></description>
@@ -12,12 +12,11 @@
         <!-- Add your extensions here -->
         <!-- applicationService 这个是插件配置文件的持久化 -->
         <applicationService serviceImplementation="com.mzl0101.config.GlobalConfSetting"/>
-        <applicationService serviceImplementation="com.mzl0101.config.GlobalProjectConfSetting"/>
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
-        <action id="basePackAction" class="com.mzl0101.action.BasePackAction" text="packageBuild" description="packageBuild">
+        <action id="basePackAction" class="com.mzl0101.action.BasePackAction" text="PackageBuild" description="PackageBuild">
             <add-to-group group-id="BuildMenu" anchor="last"/>
         </action>
     </actions>

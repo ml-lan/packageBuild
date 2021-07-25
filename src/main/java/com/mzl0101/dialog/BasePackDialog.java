@@ -1,35 +1,40 @@
 package com.mzl0101.dialog;
 
 import com.google.gson.Gson;
-import com.intellij.notification.Notification;
-import com.intellij.notification.NotificationDisplayType;
-import com.intellij.notification.NotificationGroup;
-import com.intellij.notification.Notifications;
 import com.intellij.openapi.components.ServiceManager;
 import com.mzl0101.base.Pack;
 import com.mzl0101.config.GlobalConfSetting;
-import com.mzl0101.config.GlobalProjectConfSetting;
 import com.mzl0101.model.PathConfig;
+import jnr.ffi.Struct;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BasePackDialog extends JDialog {
     private JPanel contentPane;
-    private JButton buildOk;
-    private JButton buildCancel;
-    private JTextField packageName;
-    private JTextField classHomePath;
-    private JTextField projectHomePath;
-    private JList funcList;
-    private JTextField outputHomePath;
-    private JButton globalConf;
-    private JTextArea confAllPath;
-    private JButton clearGlobalConf;
+    private JButton buildOk; //打包
+    private JButton buildCancel; //取消
+    private JTextField packageName; //任务号
+    private JTextField classHomePath; //class路径
+    private JTextField projectHomePath; //项目路径
+    private JTextField outputHomePath; //输出目录
+    private JComboBox projectComboBox; //项目编号
+    private JTextArea filesJsonText; //文件列表JSON字符串
+    private JButton parseButton; //解析按钮
+    private JButton configButton; //配置按钮
+    private JTextArea customizeFilesTexts; //文件列表
+    private JTabbedPane tabbedPane1;
+    private JTextArea configPathText; //配置文本
+    private JButton gitGetButton;
 
     public BasePackDialog() {
         setContentPane(contentPane);
@@ -41,49 +46,31 @@ public class BasePackDialog extends JDialog {
                 onOK();
             }
         });
-
         buildCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
             }
         });
-
-        globalConf.addActionListener(new ActionListener() {
+        //项目下拉框事件
+        projectComboBox.addItemListener(new ItemListener() {
             @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                onGlobalConf();
-            }
-        });
-
-        clearGlobalConf.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                onClearGlobalConf();
-            }
-        });
-        //列表事件
-        funcList.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                System.out.println(funcList.getSelectedIndex()+"---"+funcList.getSelectedValue());
-                GlobalProjectConfSetting globalProjectConfSetting = ServiceManager.getService(GlobalProjectConfSetting.class);
-                GlobalConfSetting globalConfSetting = ServiceManager.getService(GlobalConfSetting.class);
-                Map<String,String> confPathMap = globalConfSetting.confPathMap;
-                String projectNum = (String) funcList.getSelectedValue();
-                globalProjectConfSetting.projectNum = projectNum;
-                //设置值
-                //如果项目编号不为空
-                if(StringUtils.isNotBlank(projectNum)&&confPathMap!=null) {
-                    for (Map.Entry<String, String> entry : confPathMap.entrySet()) {
-                        String key = entry.getKey();
-                        String value = entry.getValue();
-                        System.out.println("key = " + key + ", value = " + value);
-                        if ((projectNum + "_CLASS_HOME_PATH").equals(key)) {
-                            classHomePath.setText(StringUtils.isNotBlank(value) ? value : "");
-                        } else if ((projectNum + "_PROJECT_HOME_PATH").equals(key)) {
-                            projectHomePath.setText(StringUtils.isNotBlank(value) ? value : "");
-                        } else if ((projectNum + "_OUTPUT_HOME_PATH").equals(key)) {
-                            outputHomePath.setText(StringUtils.isNotBlank(value) ? value : "");
+            public void itemStateChanged(ItemEvent itemEvent) {
+                if(itemEvent.getStateChange()==ItemEvent.SELECTED){
+                    System.out.println("选中" + itemEvent.getItem());
+                    String project = (String) itemEvent.getItem();
+                    GlobalConfSetting globalConfSetting = ServiceManager.getService(GlobalConfSetting.class);
+                    Map<String,String> confPathMap = globalConfSetting.confPathMap;
+                    if(StringUtils.isNotBlank(project)&&confPathMap!=null) {
+                        for (Map.Entry<String, String> entry : confPathMap.entrySet()) {
+                            String key = entry.getKey();
+                            String value = entry.getValue();
+                            if ((project + "_CLASS_HOME_PATH").equals(key)) {
+                                classHomePath.setText(StringUtils.isNotBlank(value) ? value : "");
+                            } else if ((project + "_PROJECT_HOME_PATH").equals(key)) {
+                                projectHomePath.setText(StringUtils.isNotBlank(value) ? value : "");
+                            } else if ((project + "_OUTPUT_HOME_PATH").equals(key)) {
+                                outputHomePath.setText(StringUtils.isNotBlank(value) ? value : "");
+                            }
                         }
                     }
                 }
@@ -103,67 +90,124 @@ public class BasePackDialog extends JDialog {
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
-        GlobalConfSetting globalConfSetting = ServiceManager.getService(GlobalConfSetting.class);
-        GlobalProjectConfSetting globalProjectConfSetting = ServiceManager.getService(GlobalProjectConfSetting.class);
-        Map<String,String> confPathMap = globalConfSetting.confPathMap;
-        String projectNum = globalProjectConfSetting.projectNum;
-        if(confPathMap!=null){
-            Gson gson = new Gson();
-            String confPathStr = gson.toJson(confPathMap);
-            confAllPath.setText(confPathStr);
-            //如果项目编号不为空
-            if(StringUtils.isNotBlank(projectNum)){
-                for (Map.Entry<String, String> entry : confPathMap.entrySet()) {
-                    String key = entry.getKey();
-                    String value = entry.getValue();
-                    System.out.println("key = " + key + ", value = " + value);
-                    if((projectNum+"_CLASS_HOME_PATH").equals(key)){
-                        classHomePath.setText(StringUtils.isNotBlank(value)?value:"");
-                    }
-                    else if((projectNum+"_PROJECT_HOME_PATH").equals(key)){
-                        projectHomePath.setText(StringUtils.isNotBlank(value)?value:"");
-                    } else if((projectNum+"_OUTPUT_HOME_PATH").equals(key)){
-                        outputHomePath.setText(StringUtils.isNotBlank(value)?value:"");
-                    }
-                }
-            }else{
-                //默认HRP项目配置
-                String classHomPathText = confPathMap.get("YXT_HRP_CLASS_HOME_PATH");
-                String projectHomePathText = confPathMap.get("YXT_HRP_PROJECT_HOME_PATH");
-                String outputHomePathText = confPathMap.get("YXT_HRP_OUTPUT_HOME_PATH");
-                classHomePath.setText(StringUtils.isNotBlank(classHomPathText)?classHomPathText:"");
-                projectHomePath.setText(StringUtils.isNotBlank(projectHomePathText)?projectHomePathText:"");
-                outputHomePath.setText(StringUtils.isNotBlank(outputHomePathText)?outputHomePathText:"");
-            }
-        }
         //设置默认值
-        funcList.setSelectedIndex(0);
-        if(StringUtils.isNotBlank(projectNum))
-        {
-            for(int i=0;i<funcList.getModel().getSize();i++){
-                if(funcList.getModel().getElementAt(i).equals(projectNum)){
-                    funcList.setSelectedIndex(i);
-                    break;
+        projectComboBox.setSelectedIndex(0);
+        customizeFilesTexts.setText("");
+        //解析JSON字符串事件
+        parseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                onParse();
+            }
+        });
+        //配置事件
+        configButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                onConfig();
+            }
+        });
+        //git获取事件
+        gitGetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                onGitGet();
+            }
+        });
+    }
+    private void onGitGet(){
+        String projectPath = projectHomePath.getText();
+        if(StringUtils.isNotBlank(projectPath)){
+            try {
+                List<String> gitDiffFileList = new ArrayList<>();
+                String osName = System.getProperty("os.name").toLowerCase();
+                java.lang.Process process;
+                if (osName.contains("win")) {
+                    String drives = projectPath.substring(0, 2);
+                    //git diff 获取文件列表
+                    process = Runtime.getRuntime().exec("cmd /c " + drives + " && cd " + projectPath + " && git diff --name-only HEAD~ HEAD");
+                } else {
+                    process = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "cd " + projectPath + " && git diff --name-only HEAD~ HEAD"});
                 }
+                InputStreamReader inputStreamReader = new InputStreamReader(process.getInputStream(), "gbk");
+                BufferedReader br = new BufferedReader(inputStreamReader);
+                String line = "";
+                line = br.readLine();
+                while (line != null) {
+                    gitDiffFileList.add(line);
+                    line = br.readLine();
+                }
+                StringBuilder filesStr = new StringBuilder();
+                int gitDiffFileListSize = gitDiffFileList.size();
+                for(int i=0;i<gitDiffFileListSize;i++){
+                    String temp = gitDiffFileList.get(i);
+                    filesStr.append(temp);
+                    if (i != gitDiffFileListSize - 1) {
+                        filesStr.append(",");
+                    }
+                    filesStr.append("\n");
+                }
+                //设置文件列表值
+                customizeFilesTexts.setText(filesStr.toString());
+            }catch (Exception e){
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "程序异常","提示", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }
 
+    }
+    /**
+     * 配置
+     */
+    private void onConfig(){
+        String configText = configPathText.getText();
+        Gson gson = new Gson();
+        Map<String,String> confPathMap = gson.fromJson(configText, Map.class);
+        GlobalConfSetting globalConfSetting = ServiceManager.getService(GlobalConfSetting.class);
+        globalConfSetting.confPathMap = confPathMap;
+    }
+    /**
+     * 解析方法
+     */
+    private void onParse(){
+        String filesJson = filesJsonText.getText();
+        Gson gson = new Gson();
+        Map<String,Object> bitBucketRespMap = gson.fromJson(filesJson, Map.class);
+        ArrayList<Object> values = (ArrayList<Object>) bitBucketRespMap.get("values");
+        StringBuilder filesStr = new StringBuilder();
+        int valuesSize = values.size();
+        for(int i=0;i<valuesSize;i++){
+            Map<String, Object> path = (Map<String, Object>)((Map<String, Object>) values.get(i)).get("path");
+            String filePath = (String) path.get("toString");
+            filesStr.append(filePath);
+            if (i != valuesSize - 1) {
+                filesStr.append(",");
+            }
+            filesStr.append("\n");
+        }
+        //设置文件列表值
+        customizeFilesTexts.setText(filesStr.toString());
+    }
+    /**
+     * 确定方法
+     */
     private void onOK() {
-        //确定按钮执行方法
         String packageNameText = packageName.getText();//任务号
-        String classHomePathText = classHomePath.getText(); //tomcat
-        String projectHomePathText = projectHomePath.getText();//项目
-        String outputHomePathText = outputHomePath.getText();//输出
-        String funcNum = funcList.getSelectedValue().toString();
-        System.out.println(funcNum);
+        String classHomePathText = classHomePath.getText(); //tomcat路径
+        String projectHomePathText = projectHomePath.getText();//项目路径
+        String outputHomePathText = outputHomePath.getText();//输出路径
+        String project = (String) projectComboBox.getSelectedItem();//项目
+        String filesStr = customizeFilesTexts.getText();//文件列表
+        filesStr = filesStr.replaceAll("\n", "");
+        List<String> filesList = Arrays.asList(filesStr.split(","));
         PathConfig pathConfig = new PathConfig();
         pathConfig.setPackageName(packageNameText);
         pathConfig.setClassHomePath(classHomePathText);
         pathConfig.setProjectHomePath(projectHomePathText);
         pathConfig.setOutputHomePath(outputHomePathText);
         pathConfig.setCustomReplaceText("");
-        if(funcNum.equals("FEIYI_INTERFACE")){
+        pathConfig.setFilesList(filesList);
+        if(project.equals("FEIYI_INTERFACE")){
             pathConfig.setCustomReplaceText("main/java/ --> ");
         }
         String result = Pack.pack(pathConfig);
@@ -173,53 +217,10 @@ public class BasePackDialog extends JDialog {
             JOptionPane.showMessageDialog(null, "程序异常","提示", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-
+    /**
+     * 取消方法
+     */
     private void onCancel() {
-        // add your code here if necessary
         dispose();
-    }
-
-    /**
-     * 全局配置路径
-     */
-    private void onGlobalConf(){
-        String confAllPathText = confAllPath.getText();
-        Gson gson = new Gson();
-        Map<String,String> confPathMap = gson.fromJson(confAllPathText, Map.class);
-        GlobalConfSetting globalConfSetting = ServiceManager.getService(GlobalConfSetting.class);
-        globalConfSetting.confPathMap = confPathMap;
-        String funcNum = funcList.getSelectedValue().toString();
-        if(StringUtils.isNotBlank(funcNum)){
-            for (Map.Entry<String, String> entry : confPathMap.entrySet()) {
-                String key = entry.getKey();
-                String value = entry.getValue();
-                System.out.println("key = " + key + ", value = " + value);
-                if((funcNum+"_CLASS_HOME_PATH").equals(key)){
-                    classHomePath.setText(StringUtils.isNotBlank(value)?value:"");
-                }
-                else if((funcNum+"_PROJECT_HOME_PATH").equals(key)){
-                    projectHomePath.setText(StringUtils.isNotBlank(value)?value:"");
-                } else if((funcNum+"_OUTPUT_HOME_PATH").equals(key)){
-                    outputHomePath.setText(StringUtils.isNotBlank(value)?value:"");
-                }
-            }
-        }
-    }
-
-    /**
-     * 清除全局配置路径
-     */
-    private void onClearGlobalConf(){
-        confAllPath.setText("");
-        GlobalConfSetting globalConfSetting = ServiceManager.getService(GlobalConfSetting.class);
-        globalConfSetting.confPathMap = null;
-    }
-
-    public static void main(String[] args) {
-        BasePackDialog dialog = new BasePackDialog();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
     }
 }

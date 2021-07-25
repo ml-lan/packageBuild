@@ -1,5 +1,7 @@
 package com.mzl0101.model;
 
+import java.util.List;
+
 /**
  * @创建人 mzl
  * @创建时间 2021/7/17 17:28
@@ -11,6 +13,14 @@ public class PathConfig {
     private String projectHomePath; //项目路径
     private String outputHomePath; //输出路径
     private String customReplaceText; //特殊字符处理
+    private List<String> filesList; //打包文件列表
+    public List<String> getFilesList() {
+        return filesList;
+    }
+
+    public void setFilesList(List<String> filesList) {
+        this.filesList = filesList;
+    }
     public String getPackageName() {
         return packageName;
     }
