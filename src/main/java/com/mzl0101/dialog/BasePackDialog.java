@@ -1,12 +1,12 @@
 package com.mzl0101.dialog;
 
+import cn.hutool.core.util.StrUtil;
 import com.google.gson.Gson;
 import com.intellij.openapi.components.ServiceManager;
 import com.mzl0101.base.Pack;
 import com.mzl0101.config.GlobalConfSetting;
 import com.mzl0101.model.PathConfig;
-import jnr.ffi.Struct;
-import org.apache.commons.lang3.StringUtils;
+
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class BasePackDialog extends JDialog {
     private JPanel contentPane;
@@ -60,16 +58,16 @@ public class BasePackDialog extends JDialog {
                     String project = (String) itemEvent.getItem();
                     GlobalConfSetting globalConfSetting = ServiceManager.getService(GlobalConfSetting.class);
                     Map<String,String> confPathMap = globalConfSetting.confPathMap;
-                    if(StringUtils.isNotBlank(project)&&confPathMap!=null) {
+                    if(StrUtil.isNotBlank(project)&&confPathMap!=null) {
                         for (Map.Entry<String, String> entry : confPathMap.entrySet()) {
                             String key = entry.getKey();
                             String value = entry.getValue();
                             if ((project + "_CLASS_HOME_PATH").equals(key)) {
-                                classHomePath.setText(StringUtils.isNotBlank(value) ? value : "");
+                                classHomePath.setText(StrUtil.isNotBlank(value) ? value : "");
                             } else if ((project + "_PROJECT_HOME_PATH").equals(key)) {
-                                projectHomePath.setText(StringUtils.isNotBlank(value) ? value : "");
+                                projectHomePath.setText(StrUtil.isNotBlank(value) ? value : "");
                             } else if ((project + "_OUTPUT_HOME_PATH").equals(key)) {
-                                outputHomePath.setText(StringUtils.isNotBlank(value) ? value : "");
+                                outputHomePath.setText(StrUtil.isNotBlank(value) ? value : "");
                             }
                         }
                     }
@@ -117,7 +115,7 @@ public class BasePackDialog extends JDialog {
     }
     private void onGitGet(){
         String projectPath = projectHomePath.getText();
-        if(StringUtils.isNotBlank(projectPath)){
+        if(StrUtil.isNotBlank(projectPath)){
             try {
                 List<String> gitDiffFileList = new ArrayList<>();
                 String osName = System.getProperty("os.name").toLowerCase();

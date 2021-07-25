@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: cn.hutool:hutool-all:5.7.5">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/cn.hutool/hutool-all/5.7.5/e7b292abd1e9747245412af0d8cde8b12fcc3545/hutool-all-5.7.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/cn.hutool/hutool-all/5.7.5/e1c72d74b60814c6271fd7cfcf96dc609d269be9/hutool-all-5.7.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

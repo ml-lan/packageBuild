@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '1.1.3'
+    id 'org.jetbrains.intellij' version '0.6.0'
 }
 
 group 'com.mzl0101'
@@ -15,12 +15,14 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
+    // https://mvnrepository.com/artifact/cn.hutool/hutool-all
+    implementation group: 'cn.hutool', name: 'hutool-all', version: '5.7.5'
 
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '2020.3.2'
+    version '2019.2.2'
 }
 patchPluginXml {
 }
