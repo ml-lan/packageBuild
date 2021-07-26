@@ -14,7 +14,7 @@ import java.util.Map;
  */
 @State(name = "GlobalConfSetting", storages = {@Storage(value = "GlobalConfSetting.xml")})
 public class GlobalConfSetting implements PersistentStateComponent<GlobalConfSetting> {
-    public Map<String,String> confPathMap; //全局配置路径
+    public Map<String, String> confPathMap; //全局配置路径
     public GlobalConfSetting getState() {
         return this;
     }

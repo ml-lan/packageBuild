@@ -2,6 +2,9 @@ package com.mzl0101.dialog;
 
 import cn.hutool.core.util.StrUtil;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.intellij.openapi.components.ServiceManager;
 import com.mzl0101.base.Pack;
 import com.mzl0101.config.GlobalConfSetting;
@@ -54,7 +57,6 @@ public class BasePackDialog extends JDialog {
             @Override
             public void itemStateChanged(ItemEvent itemEvent) {
                 if(itemEvent.getStateChange()==ItemEvent.SELECTED){
-                    System.out.println("选中" + itemEvent.getItem());
                     String project = (String) itemEvent.getItem();
                     GlobalConfSetting globalConfSetting = ServiceManager.getService(GlobalConfSetting.class);
                     Map<String,String> confPathMap = globalConfSetting.confPathMap;
@@ -91,6 +93,13 @@ public class BasePackDialog extends JDialog {
         //设置默认值
         projectComboBox.setSelectedIndex(0);
         customizeFilesTexts.setText("");
+        GlobalConfSetting globalConfSetting = ServiceManager.getService(GlobalConfSetting.class);
+        Map<String,String> confPathMap =   globalConfSetting.confPathMap;
+        if(confPathMap!=null){
+            Gson gson = new Gson();
+            String configMapStr = toPrettyFormat(gson.toJson(confPathMap));
+            configPathText.setText(configMapStr);
+        }
         //解析JSON字符串事件
         parseButton.addActionListener(new ActionListener() {
             @Override
@@ -220,5 +229,12 @@ public class BasePackDialog extends JDialog {
      */
     private void onCancel() {
         dispose();
+    }
+
+    private static String toPrettyFormat(String json) {
+        JsonParser jsonParser = new JsonParser();
+        JsonObject jsonObject = jsonParser.parse(json).getAsJsonObject();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(jsonObject);
     }
 }
