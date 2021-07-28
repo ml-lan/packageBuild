@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.mzl0101.dialog.BasePackDialog">
+  <grid id="cbd77" binding="contentPane" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="10" left="10" bottom="10" right="10"/>
+    <constraints>
+      <xy x="15" y="10" width="649" height="653"/>
+    </constraints>
+    <properties>
+      <minimumSize width="400" height="600"/>
+      <opaque value="false"/>
+      <preferredSize width="600" height="500"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <tabbedpane id="a90bb" binding="tabbedPane1" default-binding="true">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="19d0d" layout-manager="GridLayoutManager" row-count="10" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="打包"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="d7f1d" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="任务号："/>
+                </properties>
+              </component>
+              <component id="addaf" class="javax.swing.JTextField" binding="packageName">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="1dd3d" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="项目："/>
+                </properties>
+              </component>
+              <component id="44f2" class="javax.swing.JComboBox" binding="projectComboBox">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="FEIYI_HRP"/>
+                    <item value="YXT_HRP"/>
+                    <item value="NETPLAT"/>
+                    <item value="FEIYI_INTERFACE"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="e46cf" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="项目对应tomcat路径："/>
+                </properties>
+              </component>
+              <component id="e0300" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="项目路径："/>
+                </properties>
+              </component>
+              <component id="4ee0d" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="输出目录："/>
+                </properties>
+              </component>
+              <component id="4a0ad" class="javax.swing.JTextField" binding="projectHomePath">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="8c39a" class="javax.swing.JTextField" binding="outputHomePath">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="8e335" class="javax.swing.JTextField" binding="classHomePath">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="569cf" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="解析文件列表JSON串："/>
+                </properties>
+              </component>
+              <scrollpane id="f87e9">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="90797" class="javax.swing.JTextArea" binding="customizeFilesTexts">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
+              <component id="573fe" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="文件列表："/>
+                </properties>
+              </component>
+              <component id="7130a" class="javax.swing.JButton" binding="parseButton">
+                <constraints>
+                  <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="解析"/>
+                </properties>
+              </component>
+              <grid id="9538f" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="8" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="5723f" class="javax.swing.JButton" binding="buildCancel">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="取消"/>
+                    </properties>
+                  </component>
+                  <component id="e7465" class="javax.swing.JButton" binding="buildOk">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="确定"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <component id="44ccc" class="javax.swing.JButton" binding="gitGetButton">
+                <constraints>
+                  <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="git获取"/>
+                </properties>
+              </component>
+              <scrollpane id="d4bd3">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="3836a" class="javax.swing.JTextArea" binding="filesJsonText">
+                    <constraints/>
+                    <properties>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
+            </children>
+          </grid>
+          <grid id="6d63e" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="配置"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="398c8" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="全局配置路径："/>
+                </properties>
+              </component>
+              <scrollpane id="63c91">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="f6ecd" class="javax.swing.JTextArea" binding="configPathText">
+                    <constraints/>
+                    <properties>
+                      <text value="{   &#10;&#9;&quot;FEIYI_HRP_CLASS_HOME_PATH&quot;:&quot;E:\\\\dev feiyi wz\\\\feiyi_wuzi\\\\out\\\\artifacts\\\\HRP_war_exploded&quot;,&#10;&#9;&quot;FEIYI_HRP_PROJECT_HOME_PATH&quot;:&quot;E:\\\\dev feiyi wz\\\\feiyi_wuzi&quot;,&#10;&#9;&quot;FEIYI_HRP_OUTPUT_HOME_PATH&quot;:&quot;D:\\\\hrp_package&quot;,&#10;&#9;&#10;&#9;&quot;YXT_HRP_CLASS_HOME_PATH&quot;:&quot;E:\\\\dev_yxt\\\\yxt\\\\out\\\\artifacts\\\\HRP_Web_exploded&quot;,&#10;&#9;&quot;YXT_HRP_PROJECT_HOME_PATH&quot;:&quot;E:\\\\dev_yxt\\\\yxt&quot;,&#10;&#9;&quot;YXT_HRP_OUTPUT_HOME_PATH&quot;:&quot;D:\\\\hrp_package&quot;,&#10;&#9;&#10;&#9;&quot;NETPLAT_CLASS_HOME_PATH&quot;:&quot;E:\\\\dev NetPlat\\\\WebContent\\\\WEB-INF\\\\classes&quot;,&#10;&#9;&quot;NETPLAT_PROJECT_HOME_PATH&quot;:&quot;E:\\\\dev NetPlat&quot;,&#10;&#9;&quot;NETPLAT_OUTPUT_HOME_PATH&quot;:&quot;D:\\\\hrp_package&quot;,&#10;&#9;&#10;&#9;&quot;FEIYI_INTERFACE_CLASS_HOME_PATH&quot;:&quot;E:\\\\fywz_feiyi_passages\\\\feiyi_passages\\\\target\\\\feiyi_interface-0.0.1-SNAPSHOT&quot;,&#10;&#9;&quot;FEIYI_INTERFACE_PROJECT_HOME_PATH&quot;:&quot;E:\\\\fywz_feiyi_passages\\\\feiyi_passages&quot;,&#10;&#9;&quot;FEIYI_INTERFACE_OUTPUT_HOME_PATH&quot;:&quot;D:\\\\hrp_package&quot;&#10;}&#10;"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
+              <component id="fd" class="javax.swing.JButton" binding="configButton">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="配置"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+</form>
