@@ -1,14 +1,20 @@
 plugins {
     id 'java'
-    //id 'org.jetbrains.intellij' version '1.1.3'
-    id 'org.jetbrains.intellij' version '0.7.0' //for 2019.1.1版本
+    id 'org.jetbrains.intellij' version '0.7.3' //引入intellij的gradle插件
 }
 
 group 'com.mzl0101'
-version '1.0-SNAPSHOT'
+version '1.0.1'
+
+sourceCompatibility = 1.8 //限制jdk的使用版本号，这里限制到8，表示生成的idea插件只能运行在jdk8以上的环境中
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
+}
+
+buildPlugin {
+    buildSearchableOptions.enabled = false
 }
 
 dependencies {
@@ -22,12 +28,18 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    //2019.1版本
-    version '191.6707.61'
-    //version '203.7148.57'
-    //version '212.4746.22'
+    version = "2020.3.2"
+    type = "IU"
 }
 patchPluginXml {
+    changeNotes = """<pre>
+    Release v1.0.1
+        1. fix bug
+        2. support zip file
+    </pre>"""
+    // 当前定义的这个插件最早支持到什么版本的IDEA
+    sinceBuild = "145.258"
+    untilBuild = null
 }
 test {
     useJUnitPlatform()

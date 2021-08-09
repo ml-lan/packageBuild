@@ -1,12 +1,9 @@
 package com.mzl0101.action;
 
-import com.intellij.openapi.actionSystem.AnAction;
-import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.components.ServiceManager;
-import com.mzl0101.config.GlobalConfSetting;
+import com.intellij.openapi.actionSystem.*;
+import com.intellij.openapi.project.Project;
 import com.mzl0101.dialog.BasePackDialog;
 
-import java.util.Map;
 
 /**
  * @创建人 mzl
@@ -18,7 +15,9 @@ public class BasePackAction extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent e) {
         // TODO: insert action logic here
-        BasePackDialog dialog = new BasePackDialog();
+        Project project = e.getProject();
+        String projectPath = project.getBasePath();
+        BasePackDialog dialog = new BasePackDialog(projectPath);
         dialog.pack();
         dialog.setVisible(true);
     }

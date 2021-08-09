@@ -39,7 +39,7 @@ public class Pack {
         String resultStr = "";
         try {
             //删除之前打包的打包目录
-            String targetPath = OUTPUT_HOME_PATH+"\\"+PACKAGE_NAME;
+            String targetPath = OUTPUT_HOME_PATH + "\\" + PACKAGE_NAME;
             File outputDir = new File(targetPath);
             if (outputDir.exists()) {
                 FileUtil.deleteDir(outputDir);
@@ -63,7 +63,7 @@ public class Pack {
             System.out.println("打包成功，共计"+count+"个文件");
             resultStr = "打包成功，共计"+count+"个文件";
             //压缩打包文件
-            ZipUtil.zip(targetPath);
+            ZipUtil.zip(targetPath,targetPath+"/"+PACKAGE_NAME+".zip");
             //删除已经打包的文件夹
             File delOutputDir = new File(targetPath);
             if (delOutputDir.exists()) {

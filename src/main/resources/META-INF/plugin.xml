@@ -3,7 +3,13 @@
     <name>PackageBuild</name>
     <vendor email="1059115590@qq.com" url="http://www.mzl0101.com">mzl</vendor>
     <!--该插件主要解决的问题是针对传统JAVA WEB项目进行部署时，增量升级代码做的一个打包工具。支持打包class文件以及静态文件，包括JSP、JS、SQL脚本。-->
-    <description><![CDATA[The main problem that the plug-in solves is a packaging tool for incremental upgrade code when deploying traditional JAVA WEB projects. Support packaging class files and static files, including JSP, JS, SQL scripts.]]></description>
+    <description><![CDATA[The main problem that the plug-in solves is a packaging tool for incremental upgrade code when deploying traditional JAVA WEB projects.
+    Support packaging class files and static files, including JSP, JS, SQL scripts.
+    Instructions for use:
+    Install the plug-in and run the Java Web project. Click Build->packageBuild menu to pop up the packaging interface.
+    First configure the corresponding project path, then switch the packaging interface,and select the project to be packaged for packaging operation.
+    Finally, the plug-in will pack a list of files that need to be upgraded, generate a folder in the specified directory, and complete the packaging.
+    ]]></description>
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>

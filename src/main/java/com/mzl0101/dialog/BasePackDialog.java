@@ -26,9 +26,7 @@ public class BasePackDialog extends JDialog {
     private JButton buildCancel; //取消
     private JTextField packageName; //任务号
     private JTextField classHomePath; //class路径
-    private JTextField projectHomePath; //项目路径
     private JTextField outputHomePath; //输出目录
-    private JComboBox projectComboBox; //项目编号
     private JTextArea filesJsonText; //文件列表JSON字符串
     private JButton parseButton; //解析按钮
     private JButton configButton; //配置按钮
@@ -36,70 +34,45 @@ public class BasePackDialog extends JDialog {
     private JTabbedPane tabbedPane1;
     private JTextArea configPathText; //配置文本
     private JButton gitGetButton;
-
-    public BasePackDialog() {
+    private JTextField projectText; //项目
+    private String projectPath;
+    public BasePackDialog(String projectPath) {
+        this.projectPath = projectPath;
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buildOk);
         setLocation(400,200);
         buildOk.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 onOK();
             }
         });
         buildCancel.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 onCancel();
             }
         });
-        //项目下拉框事件
-        projectComboBox.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent itemEvent) {
-                if(itemEvent.getStateChange()==ItemEvent.SELECTED){
-                    String project = (String) itemEvent.getItem();
-                    GlobalConfSetting globalConfSetting = ServiceManager.getService(GlobalConfSetting.class);
-                    Map<String,String> confPathMap = globalConfSetting.confPathMap;
-                    if(StrUtil.isNotBlank(project)&&confPathMap!=null) {
-                        for (Map.Entry<String, String> entry : confPathMap.entrySet()) {
-                            String key = entry.getKey();
-                            String value = entry.getValue();
-                            if ((project + "_CLASS_HOME_PATH").equals(key)) {
-                                classHomePath.setText(StrUtil.isNotBlank(value) ? value : "");
-                            } else if ((project + "_PROJECT_HOME_PATH").equals(key)) {
-                                projectHomePath.setText(StrUtil.isNotBlank(value) ? value : "");
-                            } else if ((project + "_OUTPUT_HOME_PATH").equals(key)) {
-                                outputHomePath.setText(StrUtil.isNotBlank(value) ? value : "");
-                            }
-                        }
-                    }
-                }
-            }
-        });
+        //初始化路径文本内容
+        initText();
+
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent e) {
                 onCancel();
             }
         });
         // call onCancel() on ESCAPE
         contentPane.registerKeyboardAction(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
-        //设置默认值
-        projectComboBox.setSelectedIndex(0);
-        customizeFilesTexts.setText("");
-        GlobalConfSetting globalConfSetting = ServiceManager.getService(GlobalConfSetting.class);
-        Map<String,String> confPathMap =   globalConfSetting.confPathMap;
-        if(confPathMap!=null){
-            Gson gson = new Gson();
-            String configMapStr = toPrettyFormat(gson.toJson(confPathMap));
-            configPathText.setText(configMapStr);
-        }
         //解析JSON字符串事件
         parseButton.addActionListener(new ActionListener() {
             @Override
@@ -123,7 +96,7 @@ public class BasePackDialog extends JDialog {
         });
     }
     private void onGitGet(){
-        String projectPath = projectHomePath.getText();
+        String projectPath = this.projectPath;
         if(StrUtil.isNotBlank(projectPath)){
             try {
                 List<String> gitDiffFileList = new ArrayList<>();
@@ -172,6 +145,8 @@ public class BasePackDialog extends JDialog {
         Map<String,String> confPathMap = gson.fromJson(configText, Map.class);
         GlobalConfSetting globalConfSetting = ServiceManager.getService(GlobalConfSetting.class);
         globalConfSetting.confPathMap = confPathMap;
+        initText();
+        JOptionPane.showMessageDialog(null,"配置成功","提示",JOptionPane.INFORMATION_MESSAGE);
     }
     /**
      * 解析方法
@@ -192,8 +167,15 @@ public class BasePackDialog extends JDialog {
             }
             filesStr.append("\n");
         }
+        String originFilesStr = customizeFilesTexts.getText();
+        if(StrUtil.isNotBlank(originFilesStr)){
+            originFilesStr +=",\n";
+            originFilesStr += filesStr.toString();
+        }else{
+            originFilesStr = filesStr.toString();
+        }
         //设置文件列表值
-        customizeFilesTexts.setText(filesStr.toString());
+        customizeFilesTexts.setText(originFilesStr);
     }
     /**
      * 确定方法
@@ -201,20 +183,20 @@ public class BasePackDialog extends JDialog {
     private void onOK() {
         String packageNameText = packageName.getText();//任务号
         String classHomePathText = classHomePath.getText(); //tomcat路径
-        String projectHomePathText = projectHomePath.getText();//项目路径
+        String projectHomePathText = this.projectPath;
         String outputHomePathText = outputHomePath.getText();//输出路径
-        String project = (String) projectComboBox.getSelectedItem();//项目
+        String projectTextValue = projectText.getText();//项目
         String filesStr = customizeFilesTexts.getText();//文件列表
         filesStr = filesStr.replaceAll("\n", "");
         List<String> filesList = Arrays.asList(filesStr.split(","));
         PathConfig pathConfig = new PathConfig();
         pathConfig.setPackageName(packageNameText);
-        pathConfig.setClassHomePath(classHomePathText);
-        pathConfig.setProjectHomePath(projectHomePathText);
-        pathConfig.setOutputHomePath(outputHomePathText);
+        pathConfig.setClassHomePath(classHomePathText.replaceAll("/", "\\\\"));
+        pathConfig.setProjectHomePath(projectHomePathText.replaceAll("/", "\\\\"));
+        pathConfig.setOutputHomePath(outputHomePathText.replaceAll("/", "\\\\"));
         pathConfig.setCustomReplaceText("");
         pathConfig.setFilesList(filesList);
-        if(project.equals("FEIYI_INTERFACE")){
+        if(projectTextValue.equals("feiyi_passages")){
             pathConfig.setCustomReplaceText("main/java/ --> ");
         }
         String result = Pack.pack(pathConfig);
@@ -236,5 +218,38 @@ public class BasePackDialog extends JDialog {
         JsonObject jsonObject = jsonParser.parse(json).getAsJsonObject();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         return gson.toJson(jsonObject);
+    }
+
+    private void initText(){
+        //初始化路径文本内容
+        GlobalConfSetting globalConfSetting = ServiceManager.getService(GlobalConfSetting.class);
+        Map<String,String> confPathMap = globalConfSetting.confPathMap;
+        if(confPathMap!=null) {
+            String feiyiHrpClassHomePath = confPathMap.get("FEIYI_HRP_CLASS_HOME_PATH");
+            String yxtHrpClassHomePath = confPathMap.get("YXT_HRP_CLASS_HOME_PATH");
+            String netplatClassHomePath = confPathMap.get("NETPLAT_CLASS_HOME_PATH");
+            String feiyiInterfaceClassHomePath = confPathMap.get("FEIYI_INTERFACE_CLASS_HOME_PATH");
+            String outputPath = confPathMap.get("OUTPUT_HOME_PATH");
+            //供应链
+            if(projectPath.endsWith("NetPlat")){
+                classHomePath.setText(StrUtil.isNotBlank(netplatClassHomePath) ? netplatClassHomePath : "");
+                projectText.setText("NetPlat");
+            }else if(projectPath.endsWith("yxt")){
+                classHomePath.setText(StrUtil.isNotBlank(yxtHrpClassHomePath) ? yxtHrpClassHomePath : "");
+                projectText.setText("yxt");
+            }else if(projectPath.endsWith("feiyi_wuzi")){
+                classHomePath.setText(StrUtil.isNotBlank(feiyiHrpClassHomePath) ? feiyiHrpClassHomePath : "");
+                projectText.setText("feiyi_wuzi");
+            }else if(projectPath.endsWith("feiyi_passages")){
+                classHomePath.setText(StrUtil.isNotBlank(feiyiInterfaceClassHomePath) ? feiyiInterfaceClassHomePath : "");
+                projectText.setText("feiyi_passages");
+            }
+            outputHomePath.setText(StrUtil.isNotBlank(outputPath) ? outputPath : "");
+            projectText.setText("");
+            Gson gson = new Gson();
+            String configMapStr = toPrettyFormat(gson.toJson(confPathMap));
+            configPathText.setText(configMapStr);
+            customizeFilesTexts.setText("");
+        }
     }
 }

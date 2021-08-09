@@ -14,11 +14,16 @@ import java.util.Map;
  */
 @State(name = "GlobalConfSetting", storages = {@Storage(value = "GlobalConfSetting.xml")})
 public class GlobalConfSetting implements PersistentStateComponent<GlobalConfSetting> {
-    public Map<String, String> confPathMap; //全局配置路径
+    /**
+     * 全局配置
+     */
+    public Map<String, String> confPathMap;
+    @Override
     public GlobalConfSetting getState() {
         return this;
     }
 
+    @Override
     public void loadState(GlobalConfSetting state) {
         XmlSerializerUtil.copyBean(state, this);
     }

@@ -47,7 +47,6 @@ public class FileUtil {
             File dest = new File(desPath);
             if(!dest.getParentFile().exists()) {
                 if(!dest.getParentFile().mkdirs()) {
-                    System.out.println("创建目标文件所在目录失败！");
                     throw new RuntimeException("创建目标文件所在目录失败");
                 }
             }
