@@ -130,7 +130,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="5723f" class="javax.swing.JButton" binding="buildCancel">
+                  <component id="5723f" class="javax.swing.JButton" binding="buildCancelButton">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -138,7 +138,7 @@
                       <text value="取消"/>
                     </properties>
                   </component>
-                  <component id="e7465" class="javax.swing.JButton" binding="buildOk">
+                  <component id="e7465" class="javax.swing.JButton" binding="buildOkButton">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -207,7 +207,7 @@
                   <component id="f6ecd" class="javax.swing.JTextArea" binding="configPathText">
                     <constraints/>
                     <properties>
-                      <text value="{&#10;    &quot;FEIYI_HRP_CLASS_HOME_PATH&quot;: &quot;E:/dev feiyi wz/feiyi_wuzi/out/artifacts/HRP_war_exploded&quot;,&#10;    &quot;YXT_HRP_CLASS_HOME_PATH&quot;: &quot;E:/dev_yxt/yxt/out/artifacts/HRP_Web_exploded&quot;,&#10;    &quot;NETPLAT_CLASS_HOME_PATH&quot;: &quot;E:/dev NetPlat/out/artifacts/NetPlat_Web_exploded&quot;,&#10;    &quot;FEIYI_INTERFACE_CLASS_HOME_PATH&quot;: &quot;E:/fywz_feiyi_passages/feiyi_passages/target/feiyi_interface-0.0.1-SNAPSHOT&quot;,&#10;    &quot;OUTPUT_HOME_PATH&quot;: &quot;D:/buildPackage&quot;&#10;}"/>
+                      <text value="{&#10;    &quot;FY_HRP_CLASS_HOME_PATH&quot;: &quot;E:/dev feiyi wz/feiyi_wuzi/out/artifacts/HRP_war_exploded&quot;,&#10;    &quot;YXT_HRP_CLASS_HOME_PATH&quot;: &quot;E:/dev_yxt/yxt/out/artifacts/HRP_Web_exploded&quot;,&#10;    &quot;NET_PLAT_CLASS_HOME_PATH&quot;: &quot;E:/dev NetPlat/out/artifacts/NetPlat_Web_exploded&quot;,&#10;    &quot;FY_INTERFACE_CLASS_HOME_PATH&quot;: &quot;E:/fywz_feiyi_passages/feiyi_passages/target/feiyi_interface-0.0.1-SNAPSHOT&quot;,&#10;    &quot;OUTPUT_HOME_PATH&quot;: &quot;D:/buildPackage&quot;&#10;}"/>
                     </properties>
                   </component>
                 </children>

@@ -3,17 +3,43 @@ package com.mzl0101.model;
 import java.util.List;
 
 /**
- * @创建人 mzl
+ * @author mzl
  * @创建时间 2021/7/17 17:28
  * @描述
  */
-public class PathConfig {
-    private String packageName; //任务号
-    private String classHomePath; //项目对应tomcat路径
-    private String projectHomePath; //项目路径
-    private String outputHomePath; //输出路径
-    private String customReplaceText; //特殊字符处理
-    private List<String> filesList; //打包文件列表
+public class PackageBuildConfig {
+    /**
+     * 任务号
+     */
+    private String packageName;
+    /**
+     * 项目对应tomcat路径
+     */
+    private String classHomePath;
+    /**
+     * 项目路径
+     */
+    private String projectHomePath;
+    /**
+     * 输出路径
+     */
+    private String outputHomePath;
+    /**
+     * 打包文件列表
+     */
+    private List<String> filesList;
+
+    /**
+     * 项目名称
+     */
+    private String projectName;
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
     public List<String> getFilesList() {
         return filesList;
     }
@@ -51,14 +77,6 @@ public class PathConfig {
 
     public void setOutputHomePath(String outputHomePath) {
         this.outputHomePath = outputHomePath;
-    }
-
-    public String getCustomReplaceText() {
-        return customReplaceText;
-    }
-
-    public void setCustomReplaceText(String customReplaceText) {
-        this.customReplaceText = customReplaceText;
     }
 
 }

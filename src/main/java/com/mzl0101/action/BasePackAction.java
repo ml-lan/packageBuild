@@ -16,8 +16,11 @@ public class BasePackAction extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         // TODO: insert action logic here
         Project project = e.getProject();
+        //项目路径
         String projectPath = project.getBasePath();
-        BasePackDialog dialog = new BasePackDialog(projectPath);
+        //项目名称
+        String projectName = project.getName();
+        BasePackDialog dialog = new BasePackDialog(projectPath, projectName);
         dialog.pack();
         dialog.setVisible(true);
     }

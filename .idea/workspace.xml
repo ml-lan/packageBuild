@@ -5,10 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95f6d32e-12b7-4524-8971-ac533c973df5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/gc.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -16,23 +12,18 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/packageBuild.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/packageBuild.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__cn_hutool_hutool_all_5_6_3.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/packageBuild.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/packageBuild.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/packageBuild.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/packageBuild.test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mzl0101/action/BasePackAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/action/BasePackAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mzl0101/base/Pack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/base/Pack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mzl0101/config/GlobalConfSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/config/GlobalConfSetting.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mzl0101/dialog/BasePackDialog.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/dialog/BasePackDialog.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mzl0101/dialog/BasePackDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/dialog/BasePackDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mzl0101/model/PathConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/model/PackageBuildConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mzl0101/util/FileUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/util/FileUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,11 +47,6 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="packageBuild" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="packageBuild" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -111,8 +97,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="345" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="228" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="49" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="477" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/build.gradle" />
@@ -267,10 +253,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.packageBuild [buildPlugin]" />
         <item itemvalue="Gradle.packageBuild [clean]" />
         <item itemvalue="Gradle.packageBuild [build]" />
         <item itemvalue="Gradle.packageBuild [build] (4)" />
+        <item itemvalue="Gradle.packageBuild [buildPlugin]" />
         <item itemvalue="Application.StrUtil" />
       </list>
     </recent_temporary>
@@ -308,6 +294,9 @@
       <workItem from="1628299919465" duration="5189000" />
       <workItem from="1628471259889" duration="6000" />
       <workItem from="1628476804007" duration="105000" />
+      <workItem from="1628822794280" duration="512000" />
+      <workItem from="1628858796879" duration="3729000" />
+      <workItem from="1628905045479" duration="19353000" />
     </task>
     <servers />
   </component>
@@ -325,5 +314,26 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/mzl0101/base/Pack.java</url>
+          <line>135</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/mzl0101/dialog/BasePackDialog.java</url>
+          <line>240</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/mzl0101/base/Pack.java</url>
+          <line>182</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

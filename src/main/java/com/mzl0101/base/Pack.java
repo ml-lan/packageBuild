@@ -1,74 +1,79 @@
 package com.mzl0101.base;
 
-import cn.hutool.core.util.ZipUtil;
-import com.mzl0101.model.PathConfig;
+import com.mzl0101.model.PackageBuildConfig;
 import com.mzl0101.util.FileUtil;
+import org.apache.commons.collections.CollectionUtils;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
+import java.io.*;
+import java.util.List;
+import java.util.zip.ZipOutputStream;
+
+import static com.mzl0101.util.FileUtil.copyFile;
 
 /**
- * @创建人 mzl
+ * @author mzl
  * @创建时间 2021/7/17 17:27
- * @描述
+ * @描述 打包方法主类
  */
 public class Pack {
 
-    public static String PACKAGE_NAME; //任务号
-    public static String CLASS_HOME_PATH; //项目对应tomcat路径
-    public static String PROJECT_HOME_PATH; //项目路径
-    public static String OUTPUT_HOME_PATH; //输出路径
-    public static String CUSTOM_REPLACE_TEXT; //特殊字符处理
-    public static List<String> FILES_LIST; //文件列表
+    /**
+     * 路径分隔符
+     */
+    public static String SEPARATOR = File.separator;
+    public static String PACKAGE_NAME = "";
+    public static String CLASS_HOME_PATH = "";
+    public static String PROJECT_HOME_PATH = "";
+    public static String OUTPUT_HOME_PATH = "";
+    public static String PROJECT_NAME =  "";
     /**
      * 打包方法
      */
-    public static String pack(PathConfig pathConfig) {
-        //加载配置
-        PACKAGE_NAME = pathConfig.getPackageName();
-        CLASS_HOME_PATH = pathConfig.getClassHomePath();
-        PROJECT_HOME_PATH = pathConfig.getProjectHomePath();
-        OUTPUT_HOME_PATH = pathConfig.getOutputHomePath();
-        CUSTOM_REPLACE_TEXT = pathConfig.getCustomReplaceText();
-        FILES_LIST = pathConfig.getFilesList();
+    public static String pack(PackageBuildConfig packageBuildConfig) {
+        PACKAGE_NAME = packageBuildConfig.getPackageName();
+        CLASS_HOME_PATH = packageBuildConfig.getClassHomePath();
+        PROJECT_HOME_PATH = packageBuildConfig.getProjectHomePath();
+        OUTPUT_HOME_PATH = packageBuildConfig.getOutputHomePath();
+        PROJECT_NAME = packageBuildConfig.getProjectName();
+        List<String> filesList = packageBuildConfig.getFilesList();
         String resultStr = "";
         try {
-            //删除之前打包的打包目录
-            String targetPath = OUTPUT_HOME_PATH + "\\" + PACKAGE_NAME;
-            File outputDir = new File(targetPath);
-            if (outputDir.exists()) {
-                FileUtil.deleteDir(outputDir);
-            }
-            String fileList = "";
-            int count = 0;
-            for(String gitDiffFile: FILES_LIST){
-                List<Map<String,String>> filePathList = getClassFilePath(getFilePath(gitDiffFile));
-                for(Map<String,String> filePaths:filePathList){
-                    String realFilePath = filePaths.get("realFilePath");
-                    String copyFilePath = filePaths.get("copyFilePath");
-                    String relativeFilePath = filePaths.get("relativeFilePath");
-                    FileUtil.copyFile(realFilePath,copyFilePath);
-                    fileList += (fileList==null||fileList.length()<=0)?relativeFilePath:(","+relativeFilePath);
-                    count++;
+            String targetPackagePath = OUTPUT_HOME_PATH+SEPARATOR+PACKAGE_NAME;
+            File targetPackagePathFile = new File(targetPackagePath);
+            boolean success = targetPackagePathFile.mkdirs();
+            String fileListPathText = OUTPUT_HOME_PATH+SEPARATOR+PACKAGE_NAME+SEPARATOR+"fileList.txt";
+            File fileListFile = new File(fileListPathText);
+            if(success)
+            {
+                if(!fileListFile.exists()){
+                    fileListFile.createNewFile();
                 }
             }
-            String fileListPath = OUTPUT_HOME_PATH+"\\"+PACKAGE_NAME+"\\fileList.txt";
-            System.out.println("输出文件列表 >> "+fileListPath);
-            Files.write(Paths.get(fileListPath), fileList.getBytes());
-            System.out.println("打包成功，共计"+count+"个文件");
-            resultStr = "打包成功，共计"+count+"个文件";
-            //压缩打包文件
-            ZipUtil.zip(targetPath,targetPath+"/"+PACKAGE_NAME+".zip");
-            //删除已经打包的文件夹
-            File delOutputDir = new File(targetPath);
-            if (delOutputDir.exists()) {
-                FileUtil.deleteDir(delOutputDir);
+            BufferedWriter fileListWriter = new BufferedWriter(new FileWriter(fileListPathText));
+            for(String fileStr: filesList){
+                //写入fileList.txt 文件
+                fileListWriter.write(fileStr + "\r\n");
+                if(PROJECT_NAME.toUpperCase().contains("FEIYI_INTERFACE")){
+                    replaceRuleFyInterface(fileStr);
+                }else if((PROJECT_HOME_PATH.toUpperCase().contains("YXT")||PROJECT_HOME_PATH.toUpperCase().contains("FEIYI_WUZI"))){
+                    replaceRuleFyOrYxt(fileStr);
+                }else if(PROJECT_NAME.toUpperCase().contains("NETPLAT")){
+                    replaceRuleNetPlat(fileStr);
+                }
             }
+            fileListWriter.close();
+            resultStr = "打包成功，共计" +filesList.size() + "个文件";
+            // 对文件夹进行压缩
+            FileOutputStream fos = new FileOutputStream(OUTPUT_HOME_PATH + SEPARATOR + PACKAGE_NAME+".zip");
+            ZipOutputStream zipOut = new ZipOutputStream(fos);
+            File fileToZip = new File(OUTPUT_HOME_PATH + SEPARATOR + PACKAGE_NAME);
+            //递归压缩文件夹
+            FileUtil.zipFile(fileToZip, fileToZip.getName(), zipOut);
+            //关闭输出流
+            zipOut.close();
+            fos.close();
+            // 删除文件夹
+            FileUtil.deleteDir(new File(OUTPUT_HOME_PATH+ SEPARATOR + PACKAGE_NAME));
         }
         catch (Exception e){
             e.printStackTrace();
@@ -76,112 +81,144 @@ public class Pack {
         return resultStr;
     }
 
-
     /**
-     *
-     * @param filePath
+     * Fy或者Yx项目替换复制方法
+     * @param fileStr
      * @return
      */
-    private static List<Map<String, String>> getClassFilePath(List<String> filePath) {
-        List<Map<String, String>> result = new ArrayList<Map<String, String>>();
-        String realFilePath = filePath.get(0);
-        String copyFilePath = filePath.get(1);
-        String relativeFilePath = filePath.get(2);
-        if (realFilePath.endsWith(".class")){
-            File realFile = new File(realFilePath);
-            File parentDir = realFile.getParentFile();
-            if(!realFile.exists()){
-                throw new RuntimeException(realFilePath+"文件不存在");
-            }
-            if(!parentDir.exists()){
-                throw new RuntimeException(realFile.getParentFile().getAbsolutePath()+"目录不存在");
-            }
-            FilenameFilter fileNameFilter = new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String name) {
-                    String realFileName = realFile.getName();
-                    if(name.equals(realFileName)){
-                        return true;
-                    }
-                    if(name.lastIndexOf(".")>0 && name.startsWith(realFileName.split("\\.")[0]+"$"))
-                    {
-                        return true;
-                    }
-                    return false;
+    private static void replaceRuleFyOrYxt(String fileStr){
+        String src="",dest="";
+        String fileSuffix = fileStr.substring(fileStr.lastIndexOf("."));
+        if(".java".equalsIgnoreCase(fileSuffix)||".js".equalsIgnoreCase(fileSuffix)||".jsp".equalsIgnoreCase(fileSuffix)){
+            fileStr = fileStr.replace("src", "WEB-INF" + SEPARATOR + "classes");
+            fileStr = fileStr.replace("WebContent", "");
+        }
+        //1. java文件
+        if(".java".equals(fileSuffix)){
+            fileStr= fileStr.substring(0, fileStr.lastIndexOf("."))+".class";
+            //内部类
+            String fileName = fileStr.substring(fileStr.lastIndexOf("/") + 1, fileStr.lastIndexOf("" +
+                    ".")) + "$";
+            File folder = new File(CLASS_HOME_PATH + fileStr.substring(0, fileStr.lastIndexOf("/")));
+            List<File> innerFiles = FileUtil.searchFiles(folder, fileName);
+            if (innerFiles!=null&&innerFiles.size()>0) {
+                for (File innerFile : innerFiles) {
+                    String fileDirPath = fileStr.substring(0, fileStr.lastIndexOf("/") + 1);
+                    fileStr = fileDirPath + innerFile.getName();
+                    src = innerFile.getPath();
+                    dest = OUTPUT_HOME_PATH + SEPARATOR + PACKAGE_NAME + SEPARATOR + fileStr;
+                    copyFile(src, dest);
                 }
-            };
-            File copyFile = new File(copyFilePath);
-            String copyFilePathNew = copyFile.getParentFile().getAbsolutePath();
-            File[] files = parentDir.listFiles(fileNameFilter);
-            for(File file: files){
-                //计算相对路径
-                String relativeFilePathNew = relativeFilePath.substring(0,relativeFilePath.lastIndexOf("/"));
-                relativeFilePathNew += (("/"+file.getName()).replaceAll("\\.class","\\.java"));
-                Map<String,String> classFilePaths = new HashMap<>();
-                classFilePaths.put("realFilePath",file.getAbsolutePath());
-                classFilePaths.put("copyFilePath",copyFilePathNew+"\\"+file.getName());
-                classFilePaths.put("relativeFilePath",relativeFilePathNew);
-                result.add(classFilePaths);
             }
-        }else{
-            Map<String,String> classFilePaths = new HashMap<>();
-            classFilePaths.put("realFilePath",realFilePath);
-            classFilePaths.put("copyFilePath",copyFilePath);
-            classFilePaths.put("relativeFilePath",relativeFilePath);
-            result.add(classFilePaths);
+            src = CLASS_HOME_PATH +SEPARATOR + fileStr;
+            dest = OUTPUT_HOME_PATH + SEPARATOR + PACKAGE_NAME + SEPARATOR + fileStr;
+            copyFile(src, dest);
         }
-        return result;
+        //2. SQL脚本
+        else if (".SQL".equalsIgnoreCase(fileSuffix)) {
+            src = PROJECT_HOME_PATH + SEPARATOR + fileStr;
+            dest = OUTPUT_HOME_PATH + SEPARATOR + PACKAGE_NAME + SEPARATOR+ "SQL" + SEPARATOR + fileStr;
+            copyFile(src, dest);
+        }
+        else{
+            //复制文件
+            src = CLASS_HOME_PATH +SEPARATOR + fileStr;
+            dest = OUTPUT_HOME_PATH + SEPARATOR + PACKAGE_NAME + SEPARATOR + fileStr;
+            copyFile(src, dest);
+        }
     }
 
     /**
-     *
-     * @param filePath
-     * @return
+     * 接口项目替换复制方法
+     * @param fileStr
      */
-    private static List<String> getFilePath(String filePath){
-        List<String> filePaths =  new ArrayList<>();
-        if(filePath.contains("WebContent/")){
-            filePath = filePath.substring(filePath.indexOf("WebContent/") + 11);
-        }
-        if(filePath.contains("src/")){
-            filePath = filePath.substring(filePath.indexOf("src/") + 4);
-            filePath = "WEB-INF/classes/"+ filePath;
-        }
-        if(CUSTOM_REPLACE_TEXT!=null&&CUSTOM_REPLACE_TEXT.length()>0){
-            String matchText = CUSTOM_REPLACE_TEXT.split("-->")[0].trim();
-            String replaceText = CUSTOM_REPLACE_TEXT.split("-->")[1].trim();
-            if(filePath.indexOf(matchText)!=-1){
-                filePath = filePath.replaceAll(matchText,replaceText);
+    private static void replaceRuleFyInterface(String fileStr){
+        String src="",dest="";
+        //文件后缀
+        String fileSuffix = fileStr.substring(fileStr.lastIndexOf("."));
+        //根据文件类型进行不同的处理
+        //1. java文件
+        if(".java".equals(fileSuffix)){
+            fileStr = fileStr.replace("src", "WEB-INF" + SEPARATOR + "classes");
+            fileStr = fileStr.replace("main/java/", "");
+            fileStr= fileStr.substring(0, fileStr.lastIndexOf("."))+".class";
+            //内部类
+            String fileName = fileStr.substring(fileStr.lastIndexOf("/") + 1, fileStr.lastIndexOf("" +
+                    ".")) + "$";
+            File folder = new File(CLASS_HOME_PATH + fileStr.substring(0, fileStr.lastIndexOf("/")));
+            List<File> innerFiles = FileUtil.searchFiles(folder, fileName);
+            if (innerFiles!=null&&innerFiles.size()>0) {
+                for (File innerFile : innerFiles) {
+                    String fileDirPath = fileStr.substring(0, fileStr.lastIndexOf("/") + 1);
+                    fileStr = fileDirPath + innerFile.getName();
+                    src = innerFile.getPath();
+                    dest = OUTPUT_HOME_PATH + SEPARATOR + PACKAGE_NAME + SEPARATOR + fileStr;
+                    copyFile(src, dest);
+                }
             }
+            src = CLASS_HOME_PATH +SEPARATOR + fileStr;
+            dest = OUTPUT_HOME_PATH + SEPARATOR + PACKAGE_NAME + SEPARATOR + fileStr;
+            copyFile(src, dest);
         }
-        if(filePath.indexOf("SQL")!=-1||filePath.indexOf("sql")!=-1){
-            filePaths.add(PROJECT_HOME_PATH +"\\"+ filePath);
-            filePaths.add(OUTPUT_HOME_PATH+"\\"+PACKAGE_NAME +"\\"+ filePath);
-            filePaths.add(filePath);
-            return filePaths;
+        //2. SQL脚本
+        else if (".SQL".equalsIgnoreCase(fileSuffix)) {
+            fileStr = fileStr.replace("src/main/webapp/", "");
+            src = CLASS_HOME_PATH + SEPARATOR + fileStr;
+            dest = OUTPUT_HOME_PATH + SEPARATOR + PACKAGE_NAME + SEPARATOR + "SQL" + SEPARATOR +fileStr;
+            copyFile(src, dest);
         }
-        if(filePath.indexOf("js")!=-1){
-            filePaths.add(CLASS_HOME_PATH +"\\"+ filePath);
-            filePaths.add(OUTPUT_HOME_PATH +"\\"+PACKAGE_NAME +"\\"+ filePath);
-            filePaths.add(filePath);
-            return filePaths;
+        //其他
+        else{
+            src = CLASS_HOME_PATH +SEPARATOR + fileStr;
+            dest = OUTPUT_HOME_PATH + SEPARATOR + PACKAGE_NAME + SEPARATOR + fileStr;
+            copyFile(src, dest);
         }
-        if(filePath.indexOf("jsp")!=-1){
-            filePaths.add(CLASS_HOME_PATH +"\\"+ filePath);
-            filePaths.add(OUTPUT_HOME_PATH +"\\"+PACKAGE_NAME+"\\"+ filePath);
-            filePaths.add(filePath);
-            return filePaths;
-        }
-        if(filePath.indexOf("java")!=-1){
-            filePath = filePath.replaceAll("\\.java","\\.class");
-            filePaths.add(CLASS_HOME_PATH +"\\"+ filePath);
-            filePaths.add(OUTPUT_HOME_PATH +"\\"+PACKAGE_NAME +"\\"+ filePath);
-            filePaths.add(filePath);
-            return filePaths;
-        }
-        filePaths.add(CLASS_HOME_PATH +"\\"+ filePath);
-        filePaths.add(OUTPUT_HOME_PATH +"\\"+PACKAGE_NAME+"\\"+ filePath);
-        filePaths.add(filePath);
-        return filePaths;
     }
+
+    /**
+     * 供应链项目替换复制方法
+     * @param fileStr
+     */
+    private static void replaceRuleNetPlat(String fileStr){
+        String src="",dest="";
+        String fileSuffix = fileStr.substring(fileStr.lastIndexOf("."));
+        if(".java".equalsIgnoreCase(fileSuffix)||".js".equalsIgnoreCase(fileSuffix)||".jsp".equalsIgnoreCase(fileSuffix)){
+            fileStr = fileStr.replace("src", "WEB-INF" + SEPARATOR + "classes");
+            fileStr = fileStr.replace("WebContent", "");
+        }
+        //1. java文件
+        if(".java".equals(fileSuffix)){
+            fileStr= fileStr.substring(0, fileStr.lastIndexOf("."))+".class";
+            //内部类
+            String fileName = fileStr.substring(fileStr.lastIndexOf("/") + 1, fileStr.lastIndexOf("" +
+                    ".")) + "$";
+            File folder = new File(CLASS_HOME_PATH + fileStr.substring(0, fileStr.lastIndexOf("/")));
+            List<File> innerFiles = FileUtil.searchFiles(folder, fileName);
+            if (innerFiles!=null&&innerFiles.size()>0) {
+                for (File innerFile : innerFiles) {
+                    String fileDirPath = fileStr.substring(0, fileStr.lastIndexOf("/") + 1);
+                    fileStr = fileDirPath + innerFile.getName();
+                    src = innerFile.getPath();
+                    dest = OUTPUT_HOME_PATH + SEPARATOR + PACKAGE_NAME + SEPARATOR + fileStr;
+                    copyFile(src, dest);
+                }
+            }
+            src = CLASS_HOME_PATH +SEPARATOR + fileStr;
+            dest = OUTPUT_HOME_PATH + SEPARATOR + PACKAGE_NAME + SEPARATOR + fileStr;
+            copyFile(src, dest);
+        }
+        //2. SQL脚本
+        else if (".SQL".equalsIgnoreCase(fileSuffix)) {
+            src = PROJECT_HOME_PATH + SEPARATOR + fileStr;
+            dest = OUTPUT_HOME_PATH + SEPARATOR + PACKAGE_NAME + SEPARATOR + "SQL" + SEPARATOR + fileStr;
+            copyFile(src, dest);
+        }
+        else{
+            //复制文件
+            src = CLASS_HOME_PATH +SEPARATOR + fileStr;
+            dest = OUTPUT_HOME_PATH + SEPARATOR + PACKAGE_NAME + SEPARATOR + fileStr;
+            copyFile(src, dest);
+        }
+    }
+
 }

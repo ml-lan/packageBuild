@@ -1,13 +1,13 @@
 package com.mzl0101.util;
 
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * @创建人 mzl
@@ -50,75 +50,93 @@ public class FileUtil {
                     throw new RuntimeException("创建目标文件所在目录失败");
                 }
             }
-            long start = System.nanoTime();
-            System.out.println("复制文件开始: "+ srcPath + " -> " + desPath);
             Files.copy(source.toPath(), dest.toPath());
-            System.out.println("复制文件结束,用时: " + (System.nanoTime() - start)/1000 + "ms" );
         }catch (IOException e){
             e.printStackTrace();
         }
-
     }
 
     /**
-     *
-     * @param filePath
+     * list写入文件
+     * @param strings
+     * @param path
+     * @throws Exception
+     */
+    public static void writeFileContext(List<String>  strings, String path) throws Exception {
+        File file = new File(path);
+        //如果没有文件就创建
+        if (!file.isFile()) {
+            file.createNewFile();
+        }
+        BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+        for (String l : strings) {
+            writer.write(l + "\r\n");
+        }
+        writer.close();
+    }
+
+    /**
+     * 根据关键字搜索文件目录下的文件
+     * @param folder
+     * @param keyword
      * @return
      */
-    private static List<Map<String, String>> getClassFilePath(List<String> filePath) {
-        List<Map<String, String>> result = new ArrayList<Map<String, String>>();
-        String realFilePath = filePath.get(0);
-        String copyFilePath = filePath.get(1);
-        String relativeFilePath = filePath.get(2);
-        if (realFilePath.endsWith(".class")){
-            File realFile = new File(realFilePath);
-            File parentDir = realFile.getParentFile();
-            if(!realFile.exists()){
-                throw new RuntimeException(realFilePath+"文件不存在");
-            }
-
-            if(!parentDir.exists()){
-                throw new RuntimeException(realFile.getParentFile().getAbsolutePath()+"目录不存在");
-            }
-
-            FilenameFilter fileNameFilter = new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String name) {
-                    String realFileName = realFile.getName();
-                    if(name.equals(realFileName)){
-                        return true;
-                    }
-                    if(name.lastIndexOf(".")>0 && name.startsWith(realFileName.split("\\.")[0]+"$"))
-                    {
-                        return true;
-                    }
-                    return false;
+    public static List<File> searchFiles(File folder, String keyword) {
+        List<File> result = new ArrayList<>();
+        if(folder.isFile()){
+            result.add(folder);
+        }
+        File[] subFolders = folder.listFiles();
+        if (subFolders != null) {
+            for (File file : subFolders) {
+                if (file.getName().contains(keyword)) {
+                    result.add(file);
                 }
-            };
-
-            File copyFile = new File(copyFilePath);
-            String copyFilePathNew = copyFile.getParentFile().getAbsolutePath();
-            File[] files = parentDir.listFiles(fileNameFilter);
-            for(File file: files){
-                //计算相对路径
-                String relativeFilePathNew = relativeFilePath.substring(0,relativeFilePath.lastIndexOf("/"));
-                relativeFilePathNew += (("/"+file.getName()).replaceAll("\\.class","\\.java"));
-
-                Map<String,String> classFilePaths = new HashMap<>();
-                classFilePaths.put("realFilePath",file.getAbsolutePath());
-                classFilePaths.put("copyFilePath",copyFilePathNew+"\\"+file.getName());
-                classFilePaths.put("relativeFilePath",relativeFilePathNew);
-                result.add(classFilePaths);
             }
-
-        }else{
-            Map<String,String> classFilePaths = new HashMap<>();
-            classFilePaths.put("realFilePath",realFilePath);
-            classFilePaths.put("copyFilePath",copyFilePath);
-            classFilePaths.put("relativeFilePath",relativeFilePath);
-            result.add(classFilePaths);
         }
         return result;
     }
 
+    /**
+     * 将fileToZip文件夹及其子目录文件递归压缩到zip文件中
+     * @param fileToZip
+     * @param fileName
+     * @param zipOut
+     * @throws IOException
+     */
+    public static void zipFile(File fileToZip, String fileName, ZipOutputStream zipOut) throws IOException {
+        //不压缩隐藏文件夹
+        if (fileToZip.isHidden()) {
+            return;
+        }
+        //判断压缩对象如果是一个文件夹
+        if (fileToZip.isDirectory()) {
+            if (fileName.endsWith("/")) {
+                //如果文件夹是以“/”结尾，将文件夹作为压缩箱放入zipOut压缩输出流
+                zipOut.putNextEntry(new ZipEntry(fileName));
+                zipOut.closeEntry();
+            } else {
+                //如果文件夹不是以“/”结尾，将文件夹结尾加上“/”之后作为压缩箱放入zipOut压缩输出流
+                zipOut.putNextEntry(new ZipEntry(fileName + "/"));
+                zipOut.closeEntry();
+            }
+            //遍历文件夹子目录，进行递归的zipFile
+            File[] children = fileToZip.listFiles();
+            for (File childFile : children) {
+                zipFile(childFile, fileName + "/" + childFile.getName(), zipOut);
+            }
+            //如果当前递归对象是文件夹，加入ZipEntry之后就返回
+            return;
+        }
+        //如果当前的fileToZip不是一个文件夹，是一个文件，将其以字节码形式压缩到压缩包里面
+        FileInputStream fis = new FileInputStream(fileToZip);
+        ZipEntry zipEntry = new ZipEntry(fileName);
+        zipOut.putNextEntry(zipEntry);
+        byte[] bytes = new byte[1024];
+        int length;
+        while ((length = fis.read(bytes)) >= 0) {
+            zipOut.write(bytes, 0, length);
+        }
+        fis.close();
+    }
 }
