@@ -3,14 +3,12 @@ package com.mzl0101.util;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 /**
- * @创建人 mzl
+ * @author mzl
  * @创建时间 2021/7/17 16:59
  * @描述
  */

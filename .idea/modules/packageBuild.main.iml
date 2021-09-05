@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id="packageBuild:main" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="GRADLE" external.system.module.group="com.mzl0101" external.system.module.type="sourceSet" external.system.module.version="1.0.1" type="JAVA_MODULE" version="4">
+<module external.linked.project.id="packageBuild:main" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="GRADLE" external.system.module.group="com.mzl0101" external.system.module.type="sourceSet" external.system.module.version="1.0.3" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/../../build/classes/java/main" />
     <exclude-output />
+    <content url="file://$MODULE_DIR$/../../build/generated/sources/annotationProcessor/java/main">
+      <sourceFolder url="file://$MODULE_DIR$/../../build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
+    </content>
     <content url="file://$MODULE_DIR$/../../src/main">
       <sourceFolder url="file://$MODULE_DIR$/../../src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../src/main/resources" type="java-resource" />
     </content>
-    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.projectlombok:lombok:1.18.20" level="project" />
     <orderEntry type="module-library" scope="PROVIDED">
       <library name="Gradle: com.jetbrains:ideaIU:2020.3.2">
         <ANNOTATIONS>
@@ -342,7 +346,82 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="module-library" scope="PROVIDED">
+      <library name="Gradle: unzipped.com.jetbrains.plugins:java:unzipped.com.jetbrains.plugins:ideaIU-IU-203.7148.57-withSources">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/aether-dependency-resolver.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/completion-ranking-java-0.3.4.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/debugger-memory-agent-1.0.29.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/duplicates-java.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/duplicates-java-analysis.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/ecj-4.16.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/jam-support-impl.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/jam-support-openapi.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/java-api.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/java-duplicatesDetection.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/java-impl.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/java_resources_en.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/javac2.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/jdkAnnotations.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/jgoodies-common-1.4.0.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/jmc-common-8.0.0-2.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/jmc-flightrecorder-8.0.0-2.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/jps-builders.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/jps-builders-6.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/jps-javac-extension-1.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/jps-launcher.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/jshell-protocol.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/maven-resolver-connector-basic-1.3.3.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/maven-resolver-transport-file-1.3.3.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/maven-resolver-transport-http-1.3.3.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/profiler-ultimate.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/resources.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/resources_en.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/java/lib/sa-jdwp-1.15.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIC/2020.3.2/a5981e2df10165cc3d36b5839fd5df5c266c40f4/ideaIC-2020.3.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="PROVIDED">
+      <library name="Gradle: unzipped.com.jetbrains.plugins:DatabaseTools:unzipped.com.jetbrains.plugins:ideaIU-IU-203.7148.57-withSources">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/DatabaseTools/lib/aether-dependency-resolver.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/DatabaseTools/lib/database-dialects.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/DatabaseTools/lib/database-impl.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/DatabaseTools/lib/database-minicats.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/DatabaseTools/lib/database-openapi.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/DatabaseTools/lib/jdbc-console.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/DatabaseTools/lib/mariadb-1.8.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/DatabaseTools/lib/maven-resolver-connector-basic-1.3.3.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/DatabaseTools/lib/maven-resolver-transport-file-1.3.3.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/DatabaseTools/lib/maven-resolver-transport-http-1.3.3.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/DatabaseTools/lib/resources_en.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/DatabaseTools/lib/tips-database-plugin-203.53.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/DatabaseTools/lib/unidecode-0.0.7.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIC/2020.3.2/a5981e2df10165cc3d36b5839fd5df5c266c40f4/ideaIC-2020.3.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="PROVIDED">
+      <library name="Gradle: unzipped.com.jetbrains.plugins:platform-images:unzipped.com.jetbrains.plugins:ideaIU-IU-203.7148.57-withSources">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/platform-images/lib/platform-images.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2020.3.2/d3f81899cff3efbb6df2a112fe4e1c95b09070e6/ideaIU-2020.3.2/plugins/platform-images/lib/resources_en.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIC/2020.3.2/a5981e2df10165cc3d36b5839fd5df5c266c40f4/ideaIC-2020.3.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.5" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.commons:commons-lang3:3.11" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains:annotations:19.0.0" level="project" />
   </component>
 </module>

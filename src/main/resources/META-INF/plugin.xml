@@ -13,17 +13,19 @@
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
+    <!--必须依赖Database Tool插件-->
+    <depends>com.intellij.database</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <!-- applicationService 这个是插件配置文件的持久化 -->
-        <applicationService serviceImplementation="com.mzl0101.config.GlobalConfSetting"/>
+        <applicationService serviceImplementation="com.mzl0101.config.GlobalConfig"/>
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
         <action id="basePackAction" class="com.mzl0101.action.BasePackAction" text="PackageBuild" description="PackageBuild">
-            <add-to-group group-id="BuildMenu" anchor="last"/>
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
         </action>
     </actions>
 </idea-plugin>
