@@ -1,10 +1,11 @@
 package com.mzl0101.dialog;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mzl0101.base.BasePack;
-import com.mzl0101.util.GlobalConfigUtil;
 import com.mzl0101.model.PackageBuildModel;
 import com.mzl0101.model.PackageConfigModel;
+import com.mzl0101.util.GlobalConfigUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.swing.*;
@@ -384,7 +385,8 @@ public class BasePackDialog extends JDialog {
     private void onParse(){
         String filesJson = filesJsonText.getText();
         Gson gson = new Gson();
-        Map<String,Object> bitBucketRespMap = gson.fromJson(filesJson, Map.class);
+        java.lang.reflect.Type type = new TypeToken<Map<String, Object>>(){}.getType();
+        Map<String,Object> bitBucketRespMap = gson.fromJson(filesJson, type);
         ArrayList<Object> values = (ArrayList<Object>) bitBucketRespMap.get("values");
         StringBuilder filesStr = new StringBuilder();
         int valuesSize = values.size();

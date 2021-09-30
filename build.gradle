@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.mzl0101'
-version '1.0.3'
+version '1.0.4'
 
 sourceCompatibility = 1.8 //限制jdk的使用版本号，这里限制到8，表示生成的idea插件只能运行在jdk8以上的环境中
 targetCompatibility = 1.8
@@ -35,23 +35,23 @@ dependencies {
 intellij {
     version = "2020.3.2"
     type = "IU"
-    // 依赖的插件
-    plugins = ['java', 'DatabaseTools']
 }
 patchPluginXml {
     changeNotes = """<pre>
     English:
-    Release v1.0.3
+    Release v1.0.4
         1. Fix bug
         2. Support compressed and packaged directories
         3. Modify the interface and optimize the code
         4. Modify the plug-in location
+        5. Remove deprecated API 
     中文：
     版本 v1.0.3
         1. 修复bug
         2. 支持压缩打包文件
         3. 调整优化
         4. 修改插件位置
+        5. 移除废弃API写法
     </pre>"""
     // 当前定义的这个插件最早支持到什么版本的IDEA
     sinceBuild = "145.258"

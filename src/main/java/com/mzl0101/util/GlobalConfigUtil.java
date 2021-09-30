@@ -1,7 +1,8 @@
 package com.mzl0101.util;
 
 import com.google.gson.Gson;
-import com.intellij.openapi.components.ServiceManager;
+import com.intellij.openapi.application.Application;
+import com.intellij.openapi.application.ApplicationManager;
 import com.mzl0101.config.GlobalConfig;
 import com.mzl0101.model.PackageConfigModel;
 
@@ -16,6 +17,13 @@ import java.util.Map;
  */
 public class GlobalConfigUtil {
 
+    public static GlobalConfig getGlobalConfig(){
+        //获取application容器
+        Application application = ApplicationManager.getApplication();
+        //获取application容器中的组件
+        GlobalConfig globalConfig = application.getComponent(GlobalConfig.class);
+        return globalConfig;
+    }
 
     /**
      * 检测是否存在
@@ -23,7 +31,7 @@ public class GlobalConfigUtil {
      * @return
      */
     public static boolean checkProjectExist(String configProject){
-        GlobalConfig globalConfig = ServiceManager.getService(GlobalConfig.class);
+        GlobalConfig globalConfig = getGlobalConfig();
         Map<String,String> globalConfigMap = globalConfig.globalConfigMap;
         if(globalConfigMap==null||globalConfigMap.isEmpty()){
             return false;
@@ -36,7 +44,7 @@ public class GlobalConfigUtil {
      * @return
      */
     public static PackageConfigModel getGlobalConfig(String configProject){
-        GlobalConfig globalConfig = ServiceManager.getService(GlobalConfig.class);
+        GlobalConfig globalConfig = getGlobalConfig();
         Map<String,String> globalConfigMap = globalConfig.globalConfigMap;
         globalConfigMap.get(configProject);
         Gson gson = new Gson();
@@ -49,7 +57,7 @@ public class GlobalConfigUtil {
      * @param packageConfigModel
      */
     public static void addOrUpdateGlobalConfig(PackageConfigModel packageConfigModel){
-        GlobalConfig globalConfig = ServiceManager.getService(GlobalConfig.class);
+        GlobalConfig globalConfig = getGlobalConfig();
         Map<String,String> globalConfigMap = globalConfig.globalConfigMap;
         if(globalConfigMap==null){
             globalConfigMap = new HashMap<>();
@@ -65,7 +73,7 @@ public class GlobalConfigUtil {
      * @param configProject
      */
     public static void removeGlobalConfig(String configProject){
-        GlobalConfig globalConfig = ServiceManager.getService(GlobalConfig.class);
+        GlobalConfig globalConfig = getGlobalConfig();
         Map<String,String> globalConfigMap = globalConfig.globalConfigMap;
         Iterator<String> iter = globalConfigMap.keySet().iterator();
         while(iter.hasNext()){
@@ -82,7 +90,7 @@ public class GlobalConfigUtil {
      * @return
      */
     public static String [][] convertTwoGlobalConfig(){
-        GlobalConfig globalConfig = ServiceManager.getService(GlobalConfig.class);
+        GlobalConfig globalConfig = getGlobalConfig();
         Map<String,String> globalConfigMap = globalConfig.globalConfigMap;
         if(globalConfigMap!=null && !globalConfigMap.isEmpty()){
             int size = globalConfigMap.size();
@@ -110,7 +118,7 @@ public class GlobalConfigUtil {
      * @return
      */
     public static String [] convertOneGlobalConfig(){
-        GlobalConfig globalConfig = ServiceManager.getService(GlobalConfig.class);
+        GlobalConfig globalConfig = getGlobalConfig();
         Map<String,String> globalConfigMap = globalConfig.globalConfigMap;
         if(globalConfigMap!=null && !globalConfigMap.isEmpty()){
             int size = globalConfigMap.size();
