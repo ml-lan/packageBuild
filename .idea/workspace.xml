@@ -5,35 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95f6d32e-12b7-4524-8971-ac533c973df5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/base/BasePack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/model/PackageConfigModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/util/GlobalConfigUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/packageBuild.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/packageBuild.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/packageBuild.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/packageBuild.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/packageBuild.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/packageBuild.test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mzl0101/action/BasePackAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/action/BasePackAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mzl0101/base/Pack.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mzl0101/config/GlobalConfSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/config/GlobalConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mzl0101/dialog/BasePackDialog.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/dialog/BasePackDialog.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mzl0101/dialog/BasePackDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/dialog/BasePackDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mzl0101/model/PackageBuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/model/PackageBuildModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mzl0101/util/FileUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/util/FileUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mzl0101/util/GlobalConfigUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/util/GlobalConfigUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +49,11 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="packageBuild" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="packageBuild" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -123,7 +112,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.35160682" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -139,24 +128,14 @@
     <option name="myCommands">
       <command value="gradle :publishPlugin" />
       <command value="gradle build" />
-      <command value="gradle clean" />
       <command value="gradle buildPlugin" />
+      <command value="gradle :buildPlugin -Xlint:unchecked build" />
+      <command value="gradle :buildPlugin -Xlint:unchecked " />
+      <command value="gradle clean" />
+      <command value="gradle :buildPlugin" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.packageBuild [buildPlugin]">
-    <configuration name="BasePackDialog" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.mzl0101.dialog.BasePackDialog" />
-      <module name="packageBuild.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.mzl0101.dialog.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Gradle.packageBuild [:buildPlugin]">
     <configuration name="Plugin" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -178,6 +157,72 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="packageBuild [:buildPlugin -Xlint:unchecked build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":buildPlugin" />
+            <option value="-Xlint:unchecked" />
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="packageBuild [:buildPlugin -Xlint:unchecked]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":buildPlugin" />
+            <option value="-Xlint:unchecked" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="packageBuild [:buildPlugin]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":buildPlugin" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="packageBuild [buildPlugin]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -190,48 +235,6 @@
         <option name="taskNames">
           <list>
             <option value="buildPlugin" />
-          </list>
-        </option>
-        <option name="vmOptions" value="" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="packageBuild [build] (4)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="packageBuild [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
           </list>
         </option>
         <option name="vmOptions" value="" />
@@ -264,11 +267,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.packageBuild [clean]" />
+        <item itemvalue="Gradle.packageBuild [:buildPlugin -Xlint:unchecked]" />
+        <item itemvalue="Gradle.packageBuild [:buildPlugin -Xlint:unchecked build]" />
+        <item itemvalue="Gradle.packageBuild [:buildPlugin]" />
         <item itemvalue="Gradle.packageBuild [buildPlugin]" />
-        <item itemvalue="Application.BasePackDialog" />
-        <item itemvalue="Gradle.packageBuild [build]" />
-        <item itemvalue="Gradle.packageBuild [build] (4)" />
+        <item itemvalue="Gradle.packageBuild [clean]" />
       </list>
     </recent_temporary>
   </component>
@@ -321,6 +324,11 @@
       <workItem from="1630720634126" duration="5801000" />
       <workItem from="1630805321128" duration="13068000" />
       <workItem from="1630827847368" duration="744000" />
+      <workItem from="1630828628617" duration="271000" />
+      <workItem from="1632974191993" duration="3717000" />
+      <workItem from="1632983934447" duration="1167000" />
+      <workItem from="1632985135809" duration="246000" />
+      <workItem from="1633682432250" duration="1235000" />
     </task>
     <servers />
   </component>
@@ -344,48 +352,33 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mzl0101/dialog/BasePackDialog.java</url>
-          <line>258</line>
+          <line>259</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mzl0101/dialog/BasePackDialog.java</url>
-          <line>192</line>
+          <line>193</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mzl0101/dialog/BasePackDialog.java</url>
-          <line>191</line>
+          <line>192</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mzl0101/util/GlobalConfigUtil.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mzl0101/dialog/BasePackDialog.java</url>
-          <line>248</line>
+          <line>249</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mzl0101/util/GlobalConfigUtil.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mzl0101/dialog/BasePackDialog.java</url>
-          <line>277</line>
+          <line>278</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mzl0101/dialog/BasePackDialog.java</url>
-          <line>297</line>
+          <line>298</line>
           <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mzl0101/util/GlobalConfigUtil.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

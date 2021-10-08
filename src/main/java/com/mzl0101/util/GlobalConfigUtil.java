@@ -17,12 +17,25 @@ import java.util.Map;
  */
 public class GlobalConfigUtil {
 
-    public static GlobalConfig getGlobalConfig(){
+    public static Map<String,String> getGlobalConfig(){
         //获取application容器
         Application application = ApplicationManager.getApplication();
         //获取application容器中的组件
         GlobalConfig globalConfig = application.getComponent(GlobalConfig.class);
-        return globalConfig;
+        if(globalConfig!=null){
+            return globalConfig.globalConfigMap;
+        }
+        return new HashMap<String,String>();
+    }
+
+    public static void setGlobalConfig(Map<String,String> globalConfigMap){
+        //获取application容器
+        Application application = ApplicationManager.getApplication();
+        //获取application容器中的组件
+        GlobalConfig globalConfig = application.getComponent(GlobalConfig.class);
+        if(globalConfig!=null){
+            globalConfig.globalConfigMap = globalConfigMap;
+        }
     }
 
     /**
@@ -31,8 +44,7 @@ public class GlobalConfigUtil {
      * @return
      */
     public static boolean checkProjectExist(String configProject){
-        GlobalConfig globalConfig = getGlobalConfig();
-        Map<String,String> globalConfigMap = globalConfig.globalConfigMap;
+        Map<String,String> globalConfigMap = getGlobalConfig();
         if(globalConfigMap==null||globalConfigMap.isEmpty()){
             return false;
         }
@@ -44,12 +56,14 @@ public class GlobalConfigUtil {
      * @return
      */
     public static PackageConfigModel getGlobalConfig(String configProject){
-        GlobalConfig globalConfig = getGlobalConfig();
-        Map<String,String> globalConfigMap = globalConfig.globalConfigMap;
-        globalConfigMap.get(configProject);
-        Gson gson = new Gson();
-        PackageConfigModel packageConfigModel = gson.fromJson(globalConfigMap.get(configProject), PackageConfigModel.class);
-        return packageConfigModel;
+        Map<String,String> globalConfigMap = getGlobalConfig();
+        if(globalConfigMap!=null&&!globalConfigMap.isEmpty()){
+            globalConfigMap.get(configProject);
+            Gson gson = new Gson();
+            PackageConfigModel packageConfigModel = gson.fromJson(globalConfigMap.get(configProject), PackageConfigModel.class);
+            return packageConfigModel;
+        }
+        return null;
     }
 
     /**
@@ -57,15 +71,13 @@ public class GlobalConfigUtil {
      * @param packageConfigModel
      */
     public static void addOrUpdateGlobalConfig(PackageConfigModel packageConfigModel){
-        GlobalConfig globalConfig = getGlobalConfig();
-        Map<String,String> globalConfigMap = globalConfig.globalConfigMap;
-        if(globalConfigMap==null){
-            globalConfigMap = new HashMap<>();
+        Map<String,String> globalConfigMap = getGlobalConfig();
+        if(globalConfigMap!=null&&!globalConfigMap.isEmpty()){
+            Gson gson = new Gson();
+            String packageConfigModelStr = gson.toJson(packageConfigModel);
+            globalConfigMap.put(packageConfigModel.getConfigProject(),packageConfigModelStr);
+            setGlobalConfig(globalConfigMap);
         }
-        Gson gson = new Gson();
-        String packageConfigModelStr = gson.toJson(packageConfigModel);
-        globalConfigMap.put(packageConfigModel.getConfigProject(),packageConfigModelStr);
-        globalConfig.globalConfigMap = globalConfigMap;
     }
 
     /**
@@ -73,16 +85,17 @@ public class GlobalConfigUtil {
      * @param configProject
      */
     public static void removeGlobalConfig(String configProject){
-        GlobalConfig globalConfig = getGlobalConfig();
-        Map<String,String> globalConfigMap = globalConfig.globalConfigMap;
-        Iterator<String> iter = globalConfigMap.keySet().iterator();
-        while(iter.hasNext()){
-            String key = iter.next();
-            if(configProject.equals(key)){
-                iter.remove();
+        Map<String,String> globalConfigMap = getGlobalConfig();
+        if(globalConfigMap!=null&&!globalConfigMap.isEmpty()){
+            Iterator<String> iter = globalConfigMap.keySet().iterator();
+            while(iter.hasNext()){
+                String key = iter.next();
+                if(configProject.equals(key)){
+                    iter.remove();
+                }
             }
+            setGlobalConfig(globalConfigMap);
         }
-        globalConfig.globalConfigMap = globalConfigMap;
     }
 
     /**
@@ -90,8 +103,7 @@ public class GlobalConfigUtil {
      * @return
      */
     public static String [][] convertTwoGlobalConfig(){
-        GlobalConfig globalConfig = getGlobalConfig();
-        Map<String,String> globalConfigMap = globalConfig.globalConfigMap;
+        Map<String,String> globalConfigMap = getGlobalConfig();
         if(globalConfigMap!=null && !globalConfigMap.isEmpty()){
             int size = globalConfigMap.size();
             String [][] result = new String[size][4];
@@ -118,8 +130,7 @@ public class GlobalConfigUtil {
      * @return
      */
     public static String [] convertOneGlobalConfig(){
-        GlobalConfig globalConfig = getGlobalConfig();
-        Map<String,String> globalConfigMap = globalConfig.globalConfigMap;
+        Map<String,String> globalConfigMap = getGlobalConfig();
         if(globalConfigMap!=null && !globalConfigMap.isEmpty()){
             int size = globalConfigMap.size();
             String [] result = new String[size];

@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.mzl0101'
-version '1.0.4'
+version '1.0.5'
 
 sourceCompatibility = 1.8 //限制jdk的使用版本号，这里限制到8，表示生成的idea插件只能运行在jdk8以上的环境中
 targetCompatibility = 1.8
@@ -39,12 +39,13 @@ intellij {
 patchPluginXml {
     changeNotes = """<pre>
     English:
-    Release v1.0.4
+    Release v1.0.5
         1. Fix bug
         2. Support compressed and packaged directories
         3. Modify the interface and optimize the code
         4. Modify the plug-in location
         5. Remove deprecated API 
+        6. Fixing an empty pointer BUG prevented the plug-in interface from opening
     中文：
     版本 v1.0.3
         1. 修复bug
@@ -52,6 +53,7 @@ patchPluginXml {
         3. 调整优化
         4. 修改插件位置
         5. 移除废弃API写法
+        6. 修复空指针BUG导致无法打开插件界面
     </pre>"""
     // 当前定义的这个插件最早支持到什么版本的IDEA
     sinceBuild = "145.258"
