@@ -12,12 +12,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/packageBuild.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/packageBuild.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/packageBuild.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/packageBuild.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/packageBuild.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/packageBuild.test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mzl0101/util/GlobalConfigUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mzl0101/util/GlobalConfigUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -328,7 +330,11 @@
       <workItem from="1632974191993" duration="3717000" />
       <workItem from="1632983934447" duration="1167000" />
       <workItem from="1632985135809" duration="246000" />
-      <workItem from="1633682432250" duration="1235000" />
+      <workItem from="1633682432250" duration="1465000" />
+      <workItem from="1634696167932" duration="1080000" />
+      <workItem from="1634697281916" duration="92000" />
+      <workItem from="1634697716465" duration="15000" />
+      <workItem from="1634712152117" duration="1266000" />
     </task>
     <servers />
   </component>

@@ -21,7 +21,7 @@ public class GlobalConfigUtil {
         //获取application容器
         Application application = ApplicationManager.getApplication();
         //获取application容器中的组件
-        GlobalConfig globalConfig = application.getComponent(GlobalConfig.class);
+        GlobalConfig globalConfig = application.getService(GlobalConfig.class);
         if(globalConfig!=null){
             return globalConfig.globalConfigMap;
         }
