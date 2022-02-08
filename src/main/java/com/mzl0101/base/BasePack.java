@@ -88,8 +88,6 @@ public class BasePack {
         //替换规则
         //1. 项目编译后的class文件
         if(".java".equals(fileSuffix)){
-            //fileStr = fileStr.replace("src", "WEB-INF" + File.separator + "classes");
-            //fileStr = fileStr.replace("WebContent", "");
             String copyFilePathForJava = filePath;
             //替换文件路径
             if(copyFilePathForJava.indexOf("src/main/java")!=-1){
